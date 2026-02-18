@@ -106,7 +106,8 @@ export default function App() {
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-stone-600 mb-8 max-w-2xl mx-auto">
-            Building exceptional digital experiences with modern web technologies
+            Interested in collaborating on hospitality projects or discussing customer service opportunities? 
+            Let's connect and create exceptional experiences together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
@@ -148,21 +149,21 @@ export default function App() {
             </div>
             <div className="space-y-6">
               <p className="text-stone-600 text-lg leading-relaxed">
-                I'm a passionate full-stack developer with expertise in creating beautiful, functional web applications. 
-                I love turning ideas into reality through clean code and innovative design.
+                I'm a passionate hospitality professional with extensive experience in barista services, coffee catering, and customer relations. 
+                I love creating exceptional experiences through quality service and attention to detail.
               </p>
               <p className="text-stone-600 text-lg leading-relaxed">
-                With a strong foundation in modern web technologies, I specialize in building responsive, 
-                performant applications that deliver exceptional user experiences.
+                With a background in retail as a cashier and meaningful missionary work in Honduras, I bring a unique perspective to customer service. 
+                I specialize in creating welcoming environments and building lasting relationships with every interaction.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="bg-stone-100/80 backdrop-blur-md rounded-lg p-4 border border-stone-300">
                   <div className="text-3xl font-bold text-amber-600 mb-2">3+</div>
-                  <div className="text-stone-700">Years Experience</div>
+                  <div className="text-stone-700">Years Hospitality Experience</div>
                 </div>
                 <div className="bg-stone-100/80 backdrop-blur-md rounded-lg p-4 border border-stone-300">
                   <div className="text-3xl font-bold text-stone-600 mb-2">50+</div>
-                  <div className="text-stone-700">Projects Completed</div>
+                  <div className="text-stone-700">Events Catered</div>
                 </div>
               </div>
             </div>
@@ -179,25 +180,25 @@ export default function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: 'E-Commerce Platform',
-                description: 'Modern online shopping experience with React and Node.js',
-                tech: ['React', 'Node.js', 'MongoDB'],
+                title: 'Coffee Catering Service',
+                description: 'Premium coffee catering for corporate events and special occasions with full barista service',
+                tech: ['Customer Service', 'Event Planning', 'Quality Control'],
                 color: 'from-amber-500 to-stone-600',
-                image: '🛒' // Add your image path here
+                image: '☕' // Add your image path here
               },
               {
-                title: 'Task Management App',
-                description: 'Collaborative project management tool with real-time updates',
-                tech: ['Vue.js', 'Firebase', 'Tailwind'],
+                title: 'Retail Cashier Experience',
+                description: 'Efficient customer service and transaction management in fast-paced retail environment',
+                tech: ['POS Systems', 'Inventory Management', 'Customer Relations'],
                 color: 'from-stone-500 to-yellow-600',
-                image: '📋' // Add your image path here
+                image: '�' // Add your image path here
               },
               {
-                title: 'Weather Dashboard',
-                description: 'Beautiful weather app with location-based forecasts',
-                tech: ['JavaScript', 'API', 'Charts.js'],
+                title: 'Missionary Work Honduras',
+                description: 'Community service and youth ministry work building relationships and providing support',
+                tech: ['Community Outreach', 'Youth Programs', 'Cultural Exchange'],
                 color: 'from-yellow-500 to-amber-600',
-                image: '🌤' // Add your image path here
+                image: '�' // Add your image path here
               }
             ].map((project, index) => (
               <div
@@ -236,12 +237,12 @@ export default function App() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: 'JavaScript', level: 90, color: 'bg-amber-500' },
-              { name: 'React', level: 85, color: 'bg-stone-600' },
-              { name: 'Node.js', level: 80, color: 'bg-yellow-600' },
-              { name: 'CSS/Tailwind', level: 88, color: 'bg-amber-600' },
-              { name: 'Python', level: 75, color: 'bg-stone-500' },
-              { name: 'MongoDB', level: 70, color: 'bg-yellow-500' }
+              { name: 'Customer Service', level: 95, color: 'bg-amber-500' },
+              { name: 'Barista Skills', level: 90, color: 'bg-stone-600' },
+              { name: 'Event Planning', level: 85, color: 'bg-yellow-600' },
+              { name: 'Retail Operations', level: 88, color: 'bg-amber-600' },
+              { name: 'Community Outreach', level: 80, color: 'bg-stone-500' },
+              { name: 'Bilingual Communication', level: 75, color: 'bg-yellow-500' }
             ].map((skill, index) => (
               <div key={index} className="bg-stone-100/80 backdrop-blur-md rounded-lg p-6 border border-stone-300">
                 <div className="flex justify-between mb-2">
