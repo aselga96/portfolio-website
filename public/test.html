@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Test</title>
+</head>
+<body>
+    <h1>Image Test Page</h1>
+    <h2>Direct Image Test:</h2>
+    <img src="/src/assets/profile.jpg" alt="Direct test" style="width: 200px; height: 200px; border: 2px solid red;">
+    
+    <h2>Check if file exists:</h2>
+    <p>Open browser dev tools and check Network tab for image loading errors</p>
+    
+    <script>
+        console.log('Testing image loading...');
+        const img = new Image();
+        img.onload = () => console.log('Image loaded successfully!');
+        img.onerror = () => console.log('Image failed to load');
+        img.src = '/src/assets/profile.jpg';
+    </script>
+</body>
+</html>
