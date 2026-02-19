@@ -3,18 +3,52 @@
 @tailwind utilities;
 
 /* Custom Animations */
-@keyframes blob {
+@keyframes float {
   0% {
-    transform: translate(0px, 0px) scale(1);
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+    opacity: 0.7;
   }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
+  25% {
+    transform: translate(100px, -100px) rotate(90deg) scale(1.2);
+    opacity: 0.8;
   }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
+  50% {
+    transform: translate(-50px, -200px) rotate(180deg) scale(0.8);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(-150px, -50px) rotate(270deg) scale(1.1);
+    opacity: 0.9;
   }
   100% {
-    transform: translate(0px, 0px) scale(1);
+    transform: translate(0px, 0px) rotate(360deg) scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  33% {
+    transform: translateX(30px) translateY(-30px);
+  }
+  66% {
+    transform: translateX(-20px) translateY(20px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
   }
 }
 
@@ -41,8 +75,16 @@
   }
 }
 
-.animate-blob {
-  animation: blob 7s infinite;
+.animate-float {
+  animation: float 15s infinite ease-in-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s infinite ease-in-out;
+}
+
+.animate-drift {
+  animation: drift 8s infinite ease-in-out;
 }
 
 .animation-delay-2000 {
@@ -51,6 +93,10 @@
 
 .animation-delay-4000 {
   animation-delay: 4s;
+}
+
+.animation-delay-6000 {
+  animation-delay: 6s;
 }
 
 .animate-gradient {
@@ -73,14 +119,14 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a2e;
+  background: #f6f7f2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(45deg, #516651 0%, #657d64 100%);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+  background: linear-gradient(45deg, #657d64 0%, #516651 100%);
 }
