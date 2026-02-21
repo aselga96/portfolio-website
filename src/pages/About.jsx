@@ -11,7 +11,7 @@ export default function About() {
           <div className="relative">
             {/* Profile Image */}
             <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[32rem] lg:h-[32rem] mx-auto rounded-full overflow-hidden border-4 border-sage-500 shadow-2xl relative z-10">
-              <img src={profileImage} alt="Profile" className="w-full h-full object-cover scale-700" />
+              <img src={profileImage} alt="Profile" className="w-full h-full object-cover scale-100" />
             </div>
             <div className="absolute -inset-4 bg-gradient-to-r from-green-400 to-sage-600 rounded-full blur-xl opacity-50"></div>
           </div>
