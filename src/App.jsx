@@ -120,18 +120,31 @@ function Navigation() {
 }
 
 export default function App() {
+  const currentYear = new Date().getFullYear()
+  
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-sage-100 via-sage-200 to-green-50">
+      <div className="min-h-screen bg-gradient-to-br from-sage-100 via-sage-200 to-green-50 flex flex-col">
         <Navigation />
         
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+
+        {/* Copyright Footer */}
+        <footer className="bg-sage-900/90 backdrop-blur-md border-t border-sage-700 py-4 px-4">
+          <div className="container mx-auto text-center">
+            <p className="text-sage-300 text-sm">
+              © {currentYear} Alexander Selga. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </div>
     </Router>
   )
