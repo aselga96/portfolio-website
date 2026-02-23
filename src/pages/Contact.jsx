@@ -1,41 +1,53 @@
 export default function Contact() {
   return (
-    <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6">
-      <div className="container mx-auto max-w-4xl">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sage-900 text-center mb-8 sm:mb-12 lg:mb-16">
-          Get In <span className="text-green-700">Touch</span>
+    <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden">
+      {/* Animated Background Orbs */}
+      <div className="absolute inset-0">
+        {/* Orb 1 - Top Left */}
+        <div className="absolute top-10 left-10 w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-slate-700 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-float-orb-1"></div>
+        
+        {/* Orb 2 - Bottom Right */}
+        <div className="absolute bottom-10 right-10 w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-royal-600 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-float-orb-2 animation-delay-2000"></div>
+        
+        {/* Orb 3 - Top Center */}
+        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-lg opacity-40 animate-float-orb-3 animation-delay-4000"></div>
+      </div>
+      
+      <div className="container mx-auto max-w-4xl relative z-10">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 text-center mb-8 sm:mb-12 lg:mb-16">
+          Get In <span className="text-royal-400">Touch</span>
         </h2>
-        <div className="bg-sage-100/60 backdrop-blur-md rounded-2xl p-4 sm:p-6 lg:p-8 border border-sage-300/50 shadow-lg">
+        <div className="bg-slate-700/85 backdrop-blur-md rounded-xl p-6 sm:p-8 border border-slate-500/50 shadow-sm">
           <div className="text-center mb-4 sm:mb-6">
-            <div className="text-sm sm:text-base text-sage-800 font-semibold mb-1">Contact Me</div>
-            <div className="text-xs sm:text-sm text-sage-600">Let's connect and discuss opportunities</div>
+            <div className="text-sm sm:text-base text-slate-100 font-semibold mb-1">Contact Me</div>
+            <div className="text-xs sm:text-sm text-slate-300">Let's connect and discuss opportunities</div>
           </div>
           <form className="space-y-4 sm:space-y-6">
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
               <input
                 type="text"
                 placeholder="Your Name"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/80 border border-sage-300 rounded-lg text-sage-800 placeholder-sage-500 focus:outline-none focus:border-green-600 transition-colors text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/80 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:border-royal-500 transition-colors text-sm sm:text-base"
               />
               <input
                 type="email"
                 placeholder="Your Email"
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/80 border border-sage-300 rounded-lg text-sage-800 placeholder-sage-500 focus:outline-none focus:border-green-600 transition-colors text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/80 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:border-royal-500 transition-colors text-sm sm:text-base"
               />
             </div>
             <input
               type="text"
               placeholder="Subject"
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/80 border border-sage-300 rounded-lg text-sage-800 placeholder-sage-500 focus:outline-none focus:border-green-600 transition-colors text-sm sm:text-base"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/80 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:border-royal-500 transition-colors text-sm sm:text-base"
             />
             <textarea
               placeholder="Your Message"
               rows="4 sm:rows-5"
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/80 border border-sage-300 rounded-lg text-sage-800 placeholder-sage-500 focus:outline-none focus:border-green-600 transition-colors resize-none text-sm sm:text-base"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-700/80 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:border-royal-500 transition-colors resize-none text-sm sm:text-base"
             ></textarea>
             <button
               type="submit"
-              className="w-full py-2 sm:py-3 bg-gradient-to-r from-green-700 to-sage-800 text-white rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+              className="w-full py-2 sm:py-3 bg-gradient-to-r from-royal-600 to-midnight-700 text-white rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-sm sm:text-base"
             >
               Send Message
             </button>
@@ -45,7 +57,7 @@ export default function Contact() {
             {['GitHub', 'LinkedIn', 'Twitter', 'YouTube'].map((social, index) => (
               <button
                 key={index}
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-sage-200 rounded-full flex items-center justify-center text-sage-700 hover:bg-green-100 hover:text-green-600 transition-colors"
+                className="w-10 h-10 sm:w-11 sm:h-11 bg-slate-600/80 backdrop-blur-md border border-slate-400/30 rounded-full flex items-center justify-center text-slate-300 hover:bg-royal-600 hover:text-white transition-colors shadow-sm"
                 onClick={() => {
                   if (social === 'YouTube') {
                     window.open('https://www.youtube.com/@SelgaStudios', '_blank')
