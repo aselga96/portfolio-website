@@ -178,11 +178,12 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/poems" element={<Poems />} />
               <Route path="/poems/:poemId" element={<PoemPage />} />
               <Route path="/journal-entries" element={<JournalEntries />} />
               <Route path="/journal-entries/:entryId" element={<JournalEntryPage />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </main>
 

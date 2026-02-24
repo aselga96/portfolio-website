@@ -85,7 +85,13 @@ export default function JournalEntryPage() {
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   
-  const currentEntry = journalEntryData.find(entry => entry.id === entryId) || journalEntryData[0]
+  const currentEntry = journalEntryData.find(entry => entry.id === entryId)
+  
+  // Redirect to journal entries page if invalid entry ID
+  if (!currentEntry) {
+    navigate('/journal-entries')
+    return null
+  }
 
   const [essayData, setEssayData] = useState({
     title: currentEntry.title,

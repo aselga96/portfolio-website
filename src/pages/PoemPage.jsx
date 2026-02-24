@@ -87,7 +87,13 @@ export default function PoemPage() {
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   
-  const currentPoem = poemData.find(poem => poem.id === poemId) || poemData[0]
+  const currentPoem = poemData.find(poem => poem.id === poemId)
+  
+  // Redirect to poems page if invalid poem ID
+  if (!currentPoem) {
+    navigate('/poems')
+    return null
+  }
 
   const [essayData, setEssayData] = useState({
     title: currentPoem.title,
