@@ -8,11 +8,17 @@ export default function DirectorySideBar() {
     setIsOpen(!isOpen)
   }
 
-  const handleLinkClick = (e, targetId) => {
+  const handleLinkClick = (e, targetId, href) => {
     e.preventDefault()
     setIsOpen(false)
     
-    // Navigate to projects page if not already there
+    // If it's an external page link, navigate directly
+    if (href) {
+      window.location.href = href
+      return
+    }
+    
+    // For same-page scrolling
     if (window.location.pathname !== '/projects') {
       window.location.href = '/projects#' + targetId
     } else {
@@ -69,14 +75,32 @@ export default function DirectorySideBar() {
               Projects
             </Link>
             
-            {/* Archive with spacing */}
-            <a
-              href="/projects#archive"
-              onClick={(e) => handleLinkClick(e, 'archive')}
-              className="block p-2 text-slate-300 hover:text-royal-400 transition-colors text-sm ml-4"
-            >
-              Archive
-            </a>
+            {/* Archive with nested items */}
+            <div>
+              <a
+                href="/projects#archive"
+                onClick={(e) => handleLinkClick(e, 'archive')}
+                className="block p-2 text-slate-300 hover:text-royal-400 transition-colors text-sm ml-4"
+              >
+                Archive
+              </a>
+              
+              {/* Poems and Journal Entries as branches */}
+              <a
+                href="/poems"
+                onClick={(e) => handleLinkClick(e, 'poems', '/poems')}
+                className="block p-2 text-slate-400 hover:text-royal-400 transition-colors text-sm ml-8"
+              >
+                Poems
+              </a>
+              <a
+                href="/journal-entries"
+                onClick={(e) => handleLinkClick(e, 'journal-entries', '/journal-entries')}
+                className="block p-2 text-slate-400 hover:text-royal-400 transition-colors text-sm ml-8"
+              >
+                Journal Entries
+              </a>
+            </div>
             
             {/* Work Experience with spacing */}
             <a
@@ -85,6 +109,24 @@ export default function DirectorySideBar() {
               className="block p-2 text-slate-300 hover:text-royal-400 transition-colors text-sm ml-4"
             >
               Work Experience
+            </a>
+            
+            {/* Skills Development */}
+            <a
+              href="/projects#skills-development"
+              onClick={(e) => handleLinkClick(e, 'skills-development')}
+              className="block p-2 text-slate-300 hover:text-royal-400 transition-colors text-sm ml-4"
+            >
+              Skills Development
+            </a>
+            
+            {/* Personal Projects */}
+            <a
+              href="/projects#personal-projects"
+              onClick={(e) => handleLinkClick(e, 'personal-projects')}
+              className="block p-2 text-slate-300 hover:text-royal-400 transition-colors text-sm ml-4"
+            >
+              Personal Projects
             </a>
           </div>
         </div>

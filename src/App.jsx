@@ -1,20 +1,42 @@
-import './index.css'
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
 
 // Import pages
 import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
+import Poems from './pages/Poems'
+import PoemPage from './pages/PoemPage'
+import JournalEntries from './pages/JournalEntries'
+import JournalEntryPage from './pages/JournalEntryPage'
 import Contact from './pages/Contact'
+
+// Import components
+import UserProfile from './components/UserProfile'
+import AuthModal from './components/AuthModal'
+import { useAuth } from './contexts/AuthContext'
 
 function Navigation() {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [showAuthModal, setShowAuthModal] = useState(false)
+  const [showUserProfile, setShowUserProfile] = useState(false)
+
+  const { user, isAuthenticated } = useAuth()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
+
+  const handleAuthClick = () => {
+    if (isAuthenticated) {
+      setShowUserProfile(!showUserProfile)
+    } else {
+      setShowAuthModal(true)
+    }
+    closeMenu()
+  }
 
   return (
     <>
@@ -43,6 +65,16 @@ function Navigation() {
               <Link to="/about" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">about</Link>
               <Link to="/projects" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">projects</Link>
               <Link to="/contact" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">contact</Link>
+              <button
+                onClick={handleAuthClick}
+                className={`capitalize font-medium transition-all duration-300 ${
+                  isAuthenticated 
+                    ? 'text-royal-400 hover:text-royal-300' 
+                    : 'text-slate-300 hover:text-royal-400'
+                }`}
+              >
+                {isAuthenticated ? user.name : 'login'}
+              </button>
             </div>
           </div>
         </div>
@@ -102,9 +134,31 @@ function Navigation() {
               >
                 contact
               </Link>
+              <button
+                onClick={handleAuthClick}
+                className={`capitalize font-medium transition-all duration-300 py-2 hover:scale-105 ${
+                  isAuthenticated 
+                    ? 'text-royal-400 hover:text-royal-300' 
+                    : 'text-slate-200 hover:text-royal-400'
+                }`}
+              >
+                {isAuthenticated ? user.name : 'login'}
+              </button>
             </div>
           </div>
         </div>
+      )}
+
+      {/* User Profile Dropdown - Only for authenticated admin */}
+      {showUserProfile && isAuthenticated && user?.role === 'admin' && (
+        <div className="fixed top-16 right-4 lg:right-8 z-40">
+          <UserProfile />
+        </div>
+      )}
+
+      {/* Auth Modal */}
+      {showAuthModal && (
+        <AuthModal onClose={() => setShowAuthModal(false)} />
       )}
     </>
   )
@@ -114,28 +168,34 @@ export default function App() {
   const currentYear = new Date().getFullYear()
   
   return (
-    <Router>
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-midnight-950 flex flex-col">
-        <Navigation />
-        
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
+    <AuthProvider>
+      <Router>
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-midnight-950 flex flex-col">
+          <Navigation />
+          
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/poems" element={<Poems />} />
+              <Route path="/poems/:poemId" element={<PoemPage />} />
+              <Route path="/journal-entries" element={<JournalEntries />} />
+              <Route path="/journal-entries/:entryId" element={<JournalEntryPage />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </main>
 
-        {/* Copyright Footer */}
-        <footer className="bg-slate-900/95 backdrop-blur-md border-t border-slate-700 py-4 px-4">
-          <div className="container mx-auto text-center">
-            <p className="text-slate-300 text-sm font-medium">
-              © {currentYear} Alexander Selga. All rights reserved.
-            </p>
-          </div>
-        </footer>
-      </div>
-    </Router>
+          {/* Copyright Footer */}
+          <footer className="bg-slate-900/95 backdrop-blur-md border-t border-slate-700 py-4 px-4">
+            <div className="container mx-auto text-center">
+              <p className="text-slate-300 text-sm font-medium">
+                {currentYear} Alexander Selga. All rights reserved.
+              </p>
+            </div>
+          </footer>
+        </div>
+      </Router>
+    </AuthProvider>
   )
 }
