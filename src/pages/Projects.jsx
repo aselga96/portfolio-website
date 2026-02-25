@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import DirectorySideBar from '../components/DirectorySideBar'
 
 export default function Projects() {
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-br from-midnight-900 via-slate-900 to-blue-950">
       {/* Animated Background Orbs */}
@@ -22,11 +23,6 @@ export default function Projects() {
           <div className="space-y-8 sm:space-y-10">
             {[
               {
-                title: 'Poems',
-                description: 'Spiritual reflections and creative expressions from personal journey',
-                link: '/poems'
-              },
-              {
                 title: 'Journal Entries',
                 description: 'Personal thoughts on daily life, growth, and meaningful moments',
                 link: '/journal-entries'
@@ -37,7 +33,7 @@ export default function Projects() {
                 className={`group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm ${
                   entry.link ? 'cursor-pointer' : ''
                 }`}
-                onClick={() => entry.link && (window.location.href = entry.link)}
+                onClick={() => entry.link && navigate(entry.link)}
               >
                 <div className="flex-1 p-6 sm:p-8 text-left">
                   <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">{entry.title}</h3>
