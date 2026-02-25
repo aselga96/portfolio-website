@@ -7,7 +7,10 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Poems from './pages/Poems'
-import PoemPage from './pages/PoemPage'
+import SpiritualReflections from './pages/SpiritualReflections'
+import NaturesWisdom from './pages/NaturesWisdom'
+import HumanConnection from './pages/HumanConnection'
+import HopeAndRenewal from './pages/HopeAndRenewal'
 import JournalEntries from './pages/JournalEntries'
 import JournalEntryPage from './pages/JournalEntryPage'
 import Contact from './pages/Contact'
@@ -180,7 +183,10 @@ export default function App() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/poems" element={<Poems />} />
-              <Route path="/poems/:poemId" element={<PoemPage />} />
+              <Route path="/poems/spiritual-reflections" element={<SpiritualReflections />} />
+              <Route path="/poems/natures-wisdom" element={<NaturesWisdom />} />
+              <Route path="/poems/human-connection" element={<HumanConnection />} />
+              <Route path="/poems/hope-and-renewal" element={<HopeAndRenewal />} />
               <Route path="/journal-entries" element={<JournalEntries />} />
               <Route path="/journal-entries/:entryId" element={<JournalEntryPage />} />
               <Route path="*" element={<Home />} />
