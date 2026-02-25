@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function DirectorySideBar() {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -20,7 +21,7 @@ export default function DirectorySideBar() {
     
     // For same-page scrolling
     if (window.location.pathname !== '/projects') {
-      window.location.href = '/projects#' + targetId
+      navigate('/projects#' + targetId)
     } else {
       // Smooth scroll to the target element with offset for title visibility
       const element = document.getElementById(targetId)
