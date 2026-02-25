@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 
 export default function DirectorySideBar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -84,22 +83,6 @@ export default function DirectorySideBar() {
               >
                 Archive
               </a>
-              
-              {/* Poems and Journal Entries as branches */}
-              <Link
-                to="/poems"
-                onClick={() => setIsOpen(false)}
-                className="block p-2 text-slate-400 hover:text-royal-400 transition-colors text-sm ml-8"
-              >
-                Poems
-              </Link>
-              <Link
-                to="/journal-entries"
-                onClick={() => setIsOpen(false)}
-                className="block p-2 text-slate-400 hover:text-royal-400 transition-colors text-sm ml-8"
-              >
-                Journal Entries
-              </Link>
             </div>
             
             {/* Work Experience with spacing */}

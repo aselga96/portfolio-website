@@ -7,15 +7,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Poems from './pages/Poems'
-import SpiritualReflections from './pages/SpiritualReflections'
-import NaturesWisdom from './pages/NaturesWisdom'
-import HumanConnection from './pages/HumanConnection'
-import HopeAndRenewal from './pages/HopeAndRenewal'
 import JournalEntries from './pages/JournalEntries'
-import DailyReflections from './pages/DailyReflections'
-import LifeUpdates from './pages/LifeUpdates'
-import GrowthJourney from './pages/GrowthJourney'
-import MeaningfulMoments from './pages/MeaningfulMoments'
 import Contact from './pages/Contact'
 
 // Import components
@@ -70,8 +62,6 @@ function Navigation() {
               <Link to="/" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">home</Link>
               <Link to="/about" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">about</Link>
               <Link to="/projects" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">projects</Link>
-              <Link to="/poems" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">poems</Link>
-              <Link to="/journal-entries" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">journal</Link>
               <Link to="/contact" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">contact</Link>
               <button
                 onClick={handleAuthClick}
@@ -136,20 +126,6 @@ function Navigation() {
                 projects
               </Link>
               <Link 
-                to="/poems" 
-                onClick={closeMenu}
-                className="capitalize font-medium text-slate-200 hover:text-royal-400 transition-all duration-300 py-2 hover:scale-105"
-              >
-                poems
-              </Link>
-              <Link 
-                to="/journal-entries" 
-                onClick={closeMenu}
-                className="capitalize font-medium text-slate-200 hover:text-royal-400 transition-all duration-300 py-2 hover:scale-105"
-              >
-                journal
-              </Link>
-              <Link 
                 to="/contact" 
                 onClick={closeMenu}
                 className="capitalize font-medium text-slate-200 hover:text-royal-400 transition-all duration-300 py-2 hover:scale-105"
@@ -202,15 +178,7 @@ export default function App() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/poems" element={<Poems />} />
-              <Route path="/poems/spiritual-reflections" element={<SpiritualReflections />} />
-              <Route path="/poems/natures-wisdom" element={<NaturesWisdom />} />
-              <Route path="/poems/human-connection" element={<HumanConnection />} />
-              <Route path="/poems/hope-and-renewal" element={<HopeAndRenewal />} />
               <Route path="/journal-entries" element={<JournalEntries />} />
-              <Route path="/journal-entries/daily-reflections" element={<DailyReflections />} />
-              <Route path="/journal-entries/life-updates" element={<LifeUpdates />} />
-              <Route path="/journal-entries/growth-journey" element={<GrowthJourney />} />
-              <Route path="/journal-entries/meaningful-moments" element={<MeaningfulMoments />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </main>
