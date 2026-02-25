@@ -14,9 +14,10 @@ export default function Projects() {
       </div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <DirectorySideBar />
-        
-        <div className="lg:col-span-3 space-y-16 sm:space-y-20 lg:space-y-24">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <DirectorySideBar />
+          
+          <div className="lg:col-span-3 space-y-16 sm:space-y-20 lg:space-y-24">
           {/* Archive Section */}
           <h2 id="archive" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 text-center mb-12 sm:mb-16 lg:mb-20">
             The <span className="text-royal-400">Archive</span>
@@ -144,5 +145,6 @@ export default function Projects() {
         </div>
       </div>
     </div>
+  </div>
   )
 }
