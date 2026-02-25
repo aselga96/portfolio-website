@@ -85,6 +85,22 @@ export default function DirectorySideBar() {
               >
                 Archive
               </a>
+              <Link
+                to="/poems"
+                state={{ from: 'projects' }}
+                onClick={() => setIsOpen(false)}
+                className="block p-2 text-slate-300 hover:text-royal-400 transition-colors text-sm ml-8"
+              >
+                Poems
+              </Link>
+              <Link
+                to="/journal-entries"
+                state={{ from: 'projects' }}
+                onClick={() => setIsOpen(false)}
+                className="block p-2 text-slate-300 hover:text-royal-400 transition-colors text-sm ml-8"
+              >
+                Journal Entries
+              </Link>
             </div>
             
             {/* Work Experience with spacing */}

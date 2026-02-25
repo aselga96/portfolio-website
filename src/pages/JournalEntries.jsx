@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import DirectorySideBar from '../components/DirectorySideBar'
 import AuthModal from '../components/AuthModal'
 import DeletedItemsManager from '../components/DeletedItemsManager'
@@ -10,12 +10,10 @@ export default function JournalEntries() {
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
   const [journalData, setJournalData] = useState(() => {
-    // Load from localStorage or use default empty array
-    const savedData = localStorage.getItem('journalData')
-    if (savedData) {
-      return JSON.parse(savedData)
-    }
+    // Clear old localStorage data and use empty array
+    localStorage.removeItem('journalData')
     return []
   })
 
@@ -34,6 +32,18 @@ export default function JournalEntries() {
       } else if (journal.link) {
         navigate(journal.link)
       }
+    }
+  }
+
+  const handleBack = () => {
+    // Check if we came from Projects page (most likely via DirectorySideBar)
+    const referrer = document.referrer
+    const fromProjects = referrer.includes('/projects') || location.state?.from === 'projects'
+    
+    if (fromProjects || window.history.length <= 2) {
+      navigate('/projects')
+    } else {
+      navigate(-1)
     }
   }
 
@@ -169,7 +179,7 @@ export default function JournalEntries() {
           
           <div className="text-center mt-16 space-x-4">
             <button 
-              onClick={() => navigate(-1)}
+              onClick={handleBack}
               className="inline-flex items-center px-6 sm:px-8 py-3 bg-royal-600 hover:bg-royal-700 text-slate-100 font-medium rounded-lg transition-colors duration-300"
             >
               ← Back
