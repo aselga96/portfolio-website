@@ -11,37 +11,12 @@ export default function Poems() {
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
   const [poemsData, setPoemsData] = useState(() => {
-    // Load from localStorage or use default empty cards
+    // Load from localStorage or use default empty array
     const savedData = localStorage.getItem('poemsData')
     if (savedData) {
       return JSON.parse(savedData)
     }
-    return [
-      {
-        title: '',
-        description: '',
-        link: null, // No individual page
-        status: 'uncreated'
-      },
-      {
-        title: '',
-        description: '',
-        link: null, // No individual page
-        status: 'uncreated'
-      },
-      {
-        title: '',
-        description: '',
-        link: null, // No individual page
-        status: 'uncreated'
-      },
-      {
-        title: '',
-        description: '',
-        link: null, // No individual page
-        status: 'uncreated'
-      }
-    ]
+    return []
   })
 
   const handlePoemEdit = (index, field, value) => {

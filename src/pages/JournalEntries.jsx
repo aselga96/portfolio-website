@@ -11,41 +11,12 @@ export default function JournalEntries() {
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
   const [journalData, setJournalData] = useState(() => {
-    // Load from localStorage or use default empty cards
+    // Load from localStorage or use default empty array
     const savedData = localStorage.getItem('journalData')
     if (savedData) {
       return JSON.parse(savedData)
     }
-    return [
-      {
-        title: '',
-        description: '',
-        link: null, // No individual page
-        date: '',
-        status: 'uncreated'
-      },
-      {
-        title: '',
-        description: '',
-        link: null, // No individual page
-        date: '',
-        status: 'uncreated'
-      },
-      {
-        title: '',
-        description: '',
-        link: null, // No individual page
-        date: '',
-        status: 'uncreated'
-      },
-      {
-        title: '',
-        description: '',
-        link: null, // No individual page
-        date: '',
-        status: 'uncreated'
-      }
-    ]
+    return []
   })
 
   const handleJournalEdit = (index, field, value) => {
