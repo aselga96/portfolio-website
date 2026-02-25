@@ -13,30 +13,15 @@ import JournalEntryPage from './pages/JournalEntryPage'
 import Contact from './pages/Contact'
 
 // Import components
-import UserProfile from './components/UserProfile'
-import AuthModal from './components/AuthModal'
-import { useAuth } from './contexts/AuthContext'
+import Footer from './components/Footer'
 
 function Navigation() {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [showAuthModal, setShowAuthModal] = useState(false)
-  const [showUserProfile, setShowUserProfile] = useState(false)
-
-  const { user, isAuthenticated } = useAuth()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
-
-  const handleAuthClick = () => {
-    if (isAuthenticated) {
-      setShowUserProfile(!showUserProfile)
-    } else {
-      setShowAuthModal(true)
-    }
-    closeMenu()
-  }
 
   return (
     <>
@@ -65,16 +50,6 @@ function Navigation() {
               <Link to="/about" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">about</Link>
               <Link to="/projects" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">projects</Link>
               <Link to="/contact" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">contact</Link>
-              <button
-                onClick={handleAuthClick}
-                className={`capitalize font-medium transition-all duration-300 ${
-                  isAuthenticated 
-                    ? 'text-royal-400 hover:text-royal-300' 
-                    : 'text-slate-300 hover:text-royal-400'
-                }`}
-              >
-                {isAuthenticated ? user.name : 'login'}
-              </button>
             </div>
           </div>
         </div>
@@ -134,33 +109,12 @@ function Navigation() {
               >
                 contact
               </Link>
-              <button
-                onClick={handleAuthClick}
-                className={`capitalize font-medium transition-all duration-300 py-2 hover:scale-105 ${
-                  isAuthenticated 
-                    ? 'text-royal-400 hover:text-royal-300' 
-                    : 'text-slate-200 hover:text-royal-400'
-                }`}
-              >
-                {isAuthenticated ? user.name : 'login'}
-              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* User Profile Dropdown - Only for authenticated admin */}
-      {showUserProfile && isAuthenticated && user?.role === 'admin' && (
-        <div className="fixed top-16 right-4 lg:right-8 z-40">
-          <UserProfile />
-        </div>
-      )}
-
-      {/* Auth Modal */}
-      {showAuthModal && (
-        <AuthModal onClose={() => setShowAuthModal(false)} />
-      )}
-    </>
+      </>
   )
 }
 
@@ -187,14 +141,8 @@ export default function App() {
             </Routes>
           </main>
 
-          {/* Copyright Footer */}
-          <footer className="bg-slate-900/95 backdrop-blur-md border-t border-slate-700 py-4 px-4">
-            <div className="container mx-auto text-center">
-              <p className="text-slate-300 text-sm font-medium">
-                {currentYear} Alexander Selga. All rights reserved.
-              </p>
-            </div>
-          </footer>
+          {/* Footer with Consolidated Auth Controls */}
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
