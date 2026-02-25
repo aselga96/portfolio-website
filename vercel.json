@@ -1,0 +1,16 @@
+﻿{
+  "rewrites": [
+    {
+      "source": "/poems/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/journal-entries/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
