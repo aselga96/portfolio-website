@@ -185,12 +185,12 @@ export default function Poems() {
           </div>
           
           <div className="text-center mt-16 space-x-4">
-            <Link 
-              to="/"
+            <button 
+              onClick={() => navigate(-1)}
               className="inline-flex items-center px-6 sm:px-8 py-3 bg-royal-600 hover:bg-royal-700 text-slate-100 font-medium rounded-lg transition-colors duration-300"
             >
-              ← Back to Home
-            </Link>
+              ← Back
+            </button>
           </div>
 
           {/* Discreet Admin Controls */}
