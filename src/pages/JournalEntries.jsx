@@ -109,9 +109,11 @@ export default function JournalEntries() {
         <DirectorySideBar />
         
         <div className="lg:col-span-3 space-y-20 sm:space-y-24 lg:space-y-28">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-100 text-center mb-16 sm:mb-20 lg:mb-24">
-            <span className="text-royal-400">Journal Entries</span>
-          </h1>
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-100 text-center mb-4 sm:mb-6">
+              <span className="text-royal-400">Journal Entries</span>
+            </h1>
+          </div>
           
           <div className="space-y-8 sm:space-y-10 lg:space-y-12">
             {journalData.map((journal, index) => (
@@ -204,20 +206,24 @@ export default function JournalEntries() {
 
           {/* Discreet Admin Controls */}
           <div className="flex justify-center items-center space-x-2 mt-8">
-            {isAuthenticated && isAdmin && (
-              <>
-                <span className="text-xs text-slate-400">Welcome, {user.name}</span>
-                <button
-                  onClick={logout}
-                  className="px-3 py-1 bg-slate-800/50 hover:bg-slate-700/50 text-slate-400 text-xs font-medium rounded transition-colors duration-300"
-                >
-                  logout
-                </button>
-              </>
-            )}
+            {/* Admin controls removed - now only in footer */}
           </div>
         </div>
       </div>
+        
+        {/* Edit Button - Bottom of Page */}
+        <div className="fixed bottom-8 right-8 z-30">
+          <button
+            onClick={handleEditToggle}
+            className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium rounded-lg transition-all duration-300 shadow-lg ${
+              isEditing 
+                ? 'bg-royal-600 hover:bg-royal-700 text-slate-100' 
+                : 'bg-slate-700/50 hover:bg-slate-600/50 text-slate-300'
+            }`}
+          >
+            {isEditing ? 'Done Editing' : 'Edit'}
+          </button>
+        </div>
 
       {/* Auth Modal */}
       {showAuthModal && (

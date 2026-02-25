@@ -1,6 +1,29 @@
+import { useState } from 'react'
 import profileImage from '../assets/profile.jpg'
+import { useAuth } from '../contexts/AuthContext'
 
 export default function About() {
+  const { user, isAuthenticated, isAdmin } = useAuth()
+  const [isEditing, setIsEditing] = useState(false)
+  const [editableContent, setEditableContent] = useState({
+    name: 'Alexander Selga',
+    title: 'Hospitality Professional & Minister',
+    description1: "I'm a passionate hospitality professional with over 5 years of experience in barista services, coffee catering, and customer relations. I love creating exceptional experiences through quality service and attention to detail, bringing warmth and excellence to every interaction.",
+    description2: "My journey extends beyond hospitality into meaningful ministry work. I've dedicated over 10 years to pastoral ministry, serving as a missionary with Life Teen and focusing on youth outreach and spiritual guidance. This included a transformative summer in 2022 serving in Dahlonega, Georgia, and earlier in July 2019, when I served with the Missioners of Christ in Honduras, experiencing powerful cross-cultural ministry. These experiences, combined with my background in retail, have shaped my ability to create welcoming environments and build lasting relationships in every context."
+  })
+
+  const handleEditToggle = () => {
+    if (isAuthenticated && isAdmin) {
+      setIsEditing(!isEditing)
+    }
+  }
+
+  const handleContentEdit = (field, value) => {
+    setEditableContent(prev => ({
+      ...prev,
+      [field]: value
+    }))
+  }
   return (
     <div className="min-h-screen py-24 sm:py-32 px-6 sm:px-8 md:px-12 lg:px-16 relative overflow-hidden bg-gradient-to-br from-slate-900 via-midnight-900 to-blue-950">
       {/* Animated Background Orbs */}
@@ -41,20 +64,54 @@ export default function About() {
             {/* Content Section */}
             <div className="lg:w-1/2 space-y-8">
               <div className="text-center lg:text-left">
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-4">Alexander Selga</h3>
-                <p className="text-royal-300 font-medium mb-8">Hospitality Professional & Minister</p>
+                {isEditing && isAdmin ? (
+                  <input
+                    type="text"
+                    value={editableContent.name}
+                    onChange={(e) => handleContentEdit('name', e.target.value)}
+                    className="text-2xl sm:text-3xl font-bold text-slate-100 bg-slate-600 border border-slate-500 rounded px-3 py-2 mb-4 w-full"
+                  />
+                ) : (
+                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-4">{editableContent.name}</h3>
+                )}
+                {isEditing && isAdmin ? (
+                  <input
+                    type="text"
+                    value={editableContent.title}
+                    onChange={(e) => handleContentEdit('title', e.target.value)}
+                    className="text-royal-300 font-medium mb-8 bg-slate-600 border border-slate-500 rounded px-3 py-2 w-full"
+                  />
+                ) : (
+                  <p className="text-royal-300 font-medium mb-8">{editableContent.title}</p>
+                )}
               </div>
               
               <div className="space-y-8 text-slate-300 leading-relaxed">
-                <p className="text-base sm:text-lg">
-                  I'm a passionate hospitality professional with over 5 years of experience in barista services, coffee catering, and customer relations. 
-                  I love creating exceptional experiences through quality service and attention to detail, bringing warmth and excellence to every interaction.
-                </p>
-                <p className="text-base sm:text-lg">
-                  My journey extends beyond hospitality into meaningful ministry work. I've dedicated over 10 years to pastoral ministry, serving as a missionary with Life Teen and focusing on youth outreach and spiritual guidance. 
-                  This included a transformative summer in 2022 serving in Dahlonega, Georgia, and earlier in July 2019, when I served with the Missioners of Christ in Honduras, experiencing powerful cross-cultural ministry.
-                  These experiences, combined with my background in retail, have shaped my ability to create welcoming environments and build lasting relationships in every context.
-                </p>
+                {isEditing && isAdmin ? (
+                  <>
+                    <textarea
+                      value={editableContent.description1}
+                      onChange={(e) => handleContentEdit('description1', e.target.value)}
+                      className="text-base sm:text-lg leading-relaxed bg-slate-600 border border-slate-500 rounded px-3 py-2 w-full resize-none"
+                      rows={3}
+                    />
+                    <textarea
+                      value={editableContent.description2}
+                      onChange={(e) => handleContentEdit('description2', e.target.value)}
+                      className="text-base sm:text-lg leading-relaxed bg-slate-600 border border-slate-500 rounded px-3 py-2 w-full resize-none"
+                      rows={3}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p className="text-base sm:text-lg">
+                      {editableContent.description1}
+                    </p>
+                    <p className="text-base sm:text-lg">
+                      {editableContent.description2}
+                    </p>
+                  </>
+                )}
               </div>
               
               {/* Stats */}
@@ -72,6 +129,22 @@ export default function About() {
           </div>
         </div>
       </div>
+        
+        {/* Edit Button - Bottom of Page */}
+        {isAuthenticated && isAdmin && (
+          <div className="fixed bottom-8 right-8 z-30">
+            <button
+              onClick={handleEditToggle}
+              className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium rounded-lg transition-all duration-300 shadow-lg ${
+                isEditing 
+                  ? 'bg-royal-600 hover:bg-royal-700 text-slate-100' 
+                  : 'bg-slate-700/50 hover:bg-slate-600/50 text-slate-300'
+              }`}
+            >
+              {isEditing ? 'Done Editing' : 'Edit'}
+            </button>
+          </div>
+        )}
     </div>
   )
 }

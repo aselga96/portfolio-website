@@ -22,11 +22,11 @@ export default function Footer() {
             {/* Authentication Controls - On top for mobile, right side for desktop */}
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-3 text-center sm:text-right">
               {isAuthenticated && isAdmin && (
-                <div className="flex items-center gap-2 sm:gap-2 sm:hidden">
-                  <span className="text-xs text-slate-400">Welcome, {user.name}</span>
+                <div className="flex items-center gap-2 sm:gap-2">
+                  <span className="text-xs sm:text-sm text-slate-400">Welcome, {user.name}</span>
                   <button
                     onClick={logout}
-                    className="px-3 py-1.5 sm:py-1 bg-slate-800/50 hover:bg-slate-700/50 text-slate-400 text-xs font-medium rounded transition-colors duration-300"
+                    className="px-3 py-1.5 sm:px-4 sm:py-2 bg-slate-800/50 hover:bg-slate-700/50 text-slate-400 text-xs sm:text-sm font-medium rounded transition-colors duration-300"
                   >
                     logout
                   </button>
@@ -35,7 +35,7 @@ export default function Footer() {
               
               <button
                 onClick={handleAuthClick}
-                className={`px-5 py-2.5 sm:px-4 sm:py-2 text-xs font-medium rounded-lg transition-all duration-300 ${
+                className={`px-5 py-2.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-300 ${
                   isAuthenticated && isAdmin
                     ? 'bg-royal-600 hover:bg-royal-700 text-slate-100'
                     : 'bg-slate-800/30 hover:bg-slate-700/30 text-slate-500 hover:text-slate-400'
