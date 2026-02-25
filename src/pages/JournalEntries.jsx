@@ -11,7 +11,7 @@ export default function JournalEntries() {
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
   const [journalData, setJournalData] = useState(() => {
-    // Load from localStorage or use default data
+    // Load from localStorage or use default uncreated cards
     const savedData = localStorage.getItem('journalData')
     if (savedData) {
       return JSON.parse(savedData)
@@ -20,26 +20,30 @@ export default function JournalEntries() {
       {
         title: 'Daily Reflections',
         description: 'Thoughts and observations from everyday experiences, finding meaning in ordinary moments and celebrating small victories.',
-        link: '/journal-entries/daily-reflections',
-        date: 'April 10, 2024'
+        link: null, // No individual page
+        date: 'April 10, 2024',
+        status: 'uncreated'
       },
       {
         title: 'Life Updates',
         description: 'Personal milestones, achievements, and significant life events that mark the journey of growth and discovery.',
-        link: '/journal-entries/life-updates',
-        date: 'April 8, 2024'
+        link: null, // No individual page
+        date: 'April 8, 2024',
+        status: 'uncreated'
       },
       {
         title: 'Growth Journey',
         description: 'Personal development insights, learning experiences, and the ongoing process of becoming a better version of myself.',
-        link: '/journal-entries/growth-journey',
-        date: 'April 5, 2024'
+        link: null, // No individual page
+        date: 'April 5, 2024',
+        status: 'uncreated'
       },
       {
         title: 'Meaningful Moments',
         description: 'Capturing the small but significant moments that bring joy, wisdom, and perspective to everyday life.',
-        link: '/journal-entries/meaningful-moments',
-        date: 'April 3, 2024'
+        link: null, // No individual page
+        date: 'April 3, 2024',
+        status: 'uncreated'
       }
     ]
   })
@@ -52,9 +56,13 @@ export default function JournalEntries() {
     localStorage.setItem('journalData', JSON.stringify(updatedData))
   }
 
-  const handleCardClick = (link) => {
+  const handleCardClick = (journal) => {
     if (!isEditing) {
-      navigate(link)
+      if (journal.status === 'uncreated') {
+        alert('This journal entry page has not been created yet.')
+      } else if (journal.link) {
+        navigate(journal.link)
+      }
     }
   }
 
@@ -118,7 +126,7 @@ export default function JournalEntries() {
                 className={`group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm ${
                   !isEditing && 'cursor-pointer'
                 }`}
-                onClick={() => handleCardClick(journal.link)}
+                onClick={() => handleCardClick(journal)}
               >
                 <div className="flex-1 p-4 sm:p-6 text-left">
                   {isEditing && isAdmin ? (
@@ -163,7 +171,13 @@ export default function JournalEntries() {
                       <div className="text-xs sm:text-sm text-slate-400 italic mb-2">{journal.date}</div>
                     </>
                   )}
-                  <div className="text-xs sm:text-sm text-royal-400 font-medium hover:text-royal-300 transition-colors duration-300">Click to explore →</div>
+                  <div className={`text-xs sm:text-sm font-medium transition-colors duration-300 ${
+                    journal.status === 'uncreated' 
+                      ? 'text-slate-500 italic' 
+                      : 'text-royal-400 hover:text-royal-300'
+                  }`}>
+                    {journal.status === 'uncreated' ? 'Page not created yet' : 'Click to explore →'}
+                  </div>
                 </div>
               </div>
             ))}

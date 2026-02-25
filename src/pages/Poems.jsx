@@ -11,7 +11,7 @@ export default function Poems() {
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
   const [poemsData, setPoemsData] = useState(() => {
-    // Load from localStorage or use default data
+    // Load from localStorage or use default uncreated cards
     const savedData = localStorage.getItem('poemsData')
     if (savedData) {
       return JSON.parse(savedData)
@@ -20,22 +20,26 @@ export default function Poems() {
       {
         title: 'Spiritual Reflections',
         description: 'Finding faith in the storm, hearing divine whispers, building altars in ordinary places.',
-        link: '/poems/spiritual-reflections'
+        link: null, // No individual page
+        status: 'uncreated'
       },
       {
         title: 'Nature\'s Wisdom',
         description: 'Forest patience, ocean changes, mountain strength through perseverance.',
-        link: '/poems/natures-wisdom'
+        link: null, // No individual page
+        status: 'uncreated'
       },
       {
         title: 'Human Connection',
         description: 'Coffee conversations, being truly seen, community garden bonds.',
-        link: '/poems/human-connection'
+        link: null, // No individual page
+        status: 'uncreated'
       },
       {
         title: 'Hope and Renewal',
         description: 'Morning light after dark nights, spring\'s rebellion, flowers through concrete.',
-        link: '/poems/hope-and-renewal'
+        link: null, // No individual page
+        status: 'uncreated'
       }
     ]
   })
@@ -48,9 +52,13 @@ export default function Poems() {
     localStorage.setItem('poemsData', JSON.stringify(updatedData))
   }
 
-  const handleCardClick = (link) => {
+  const handleCardClick = (poem) => {
     if (!isEditing) {
-      navigate(link)
+      if (poem.status === 'uncreated') {
+        alert('This poem page has not been created yet.')
+      } else if (poem.link) {
+        navigate(poem.link)
+      }
     }
   }
 
@@ -114,7 +122,7 @@ export default function Poems() {
                 className={`group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm ${
                   !isEditing && 'cursor-pointer'
                 }`}
-                onClick={() => handleCardClick(poem.link)}
+                onClick={() => handleCardClick(poem)}
               >
                 <div className="flex-1 p-4 sm:p-6 text-left">
                   {isEditing && isAdmin ? (
@@ -151,7 +159,13 @@ export default function Poems() {
                       <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">{poem.description}</p>
                     </>
                   )}
-                  <div className="text-xs sm:text-sm text-royal-400 font-medium">Click to explore →</div>
+                  <div className={`text-xs sm:text-sm font-medium transition-colors duration-300 ${
+                    poem.status === 'uncreated' 
+                      ? 'text-slate-500 italic' 
+                      : 'text-royal-400 hover:text-royal-300'
+                  }`}>
+                    {poem.status === 'uncreated' ? 'Page not created yet' : 'Click to explore →'}
+                  </div>
                 </div>
               </div>
             ))}
