@@ -7,7 +7,9 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Poems from './pages/Poems'
+import PoemPage from './pages/PoemPage'
 import JournalEntries from './pages/JournalEntries'
+import JournalEntryPage from './pages/JournalEntryPage'
 import Contact from './pages/Contact'
 
 // Import components
@@ -178,7 +180,9 @@ export default function App() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/poems" element={<Poems />} />
+              <Route path="/poems/:poemId" element={<PoemPage />} />
               <Route path="/journal-entries" element={<JournalEntries />} />
+              <Route path="/journal-entries/:entryId" element={<JournalEntryPage />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </main>

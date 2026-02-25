@@ -12,9 +12,31 @@ export default function JournalEntries() {
   const navigate = useNavigate()
   const location = useLocation()
   const [journalData, setJournalData] = useState(() => {
-    // Clear old localStorage data and use empty array
+    // Clear old localStorage data and use sample journal entries
     localStorage.removeItem('journalData')
-    return []
+    return [
+      {
+        title: 'A New Beginning',
+        description: 'Starting fresh with new perspectives and embracing the journey ahead with open heart and mind.',
+        date: 'March 15, 2024',
+        link: '/journal-entries/a-new-beginning',
+        content: 'Today marks the beginning of a new chapter in my life. As I sit here reflecting on the past few months, I realize how much growth has occurred. The challenges I faced seemed insurmountable at times, but each one taught me valuable lessons about resilience and perseverance.\n\nI\'ve learned that true strength isn\'t about never falling, but about getting back up every time we fall. It\'s about finding courage in the face of uncertainty and trusting that everything happens for a reason.\n\nMoving forward, I\'m committed to embracing change with grace and maintaining a positive outlook, no matter what obstacles come my way.'
+      },
+      {
+        title: 'Lessons from Nature',
+        description: 'Finding wisdom in the natural world and discovering how much we can learn from observing the cycles of life.',
+        date: 'March 10, 2024',
+        link: '/journal-entries/lessons-from-nature',
+        content: 'Spending time in nature has always been a source of inspiration and clarity for me. Yesterday, I watched a spider carefully weaving its web, each thread placed with precision and purpose. It reminded me of how we too must be deliberate in building our lives.\n\nThe changing seasons teach us about impermanence and the beauty of letting go. Just as trees shed their leaves in autumn, we too must release what no longer serves us to make room for new growth.\n\nNature operates on its own timeline, never rushing, never questioning. There\'s a profound lesson in that patience and trust in the process.'
+      },
+      {
+        title: 'The Power of Connection',
+        description: 'Exploring the importance of meaningful relationships and how they shape our journey through life.',
+        date: 'March 5, 2024',
+        link: '/journal-entries/the-power-of-connection',
+        content: 'This week I had several conversations that reminded me of the profound impact human connection has on our wellbeing. In a world that often feels disconnected, these moments of genuine understanding and shared experience are precious.\n\nI\'ve noticed that the most meaningful relationships aren\'t always the easiest. Sometimes they require difficult conversations, vulnerability, and the courage to be truly seen. But the rewards - trust, intimacy, mutual growth - are immeasurable.\n\nIt\'s easy to get caught up in the busyness of life and forget to nurture these connections. I\'m making a commitment to reach out more regularly, to listen more deeply, and to show up fully for the people who matter most.'
+      }
+    ]
   })
 
   const handleJournalEdit = (index, field, value) => {
@@ -27,9 +49,7 @@ export default function JournalEntries() {
 
   const handleCardClick = (journal) => {
     if (!isEditing) {
-      if (journal.status === 'uncreated') {
-        alert('This journal entry page has not been created yet.')
-      } else if (journal.link) {
+      if (journal.link) {
         navigate(journal.link)
       }
     }

@@ -12,9 +12,31 @@ export default function Poems() {
   const navigate = useNavigate()
   const location = useLocation()
   const [poemsData, setPoemsData] = useState(() => {
-    // Clear old localStorage data and use empty array
+    // Clear old localStorage data and use sample poems
     localStorage.removeItem('poemsData')
-    return []
+    return [
+      {
+        title: 'Morning Reflections',
+        description: 'A quiet moment at dawn, watching the world wake up with gentle light and new possibilities.',
+        date: 'March 18, 2024',
+        link: '/poems/morning-reflections',
+        content: 'The world awakens in gentle light,\nDew drops sparkle, bright and white.\nMorning whispers soft and low,\nWhere the gentle breezes blow.\n\nIn this quiet, peaceful space,\nTime finds its own gentle pace.\nNature\'s symphony begins,\nAs the new day softly spins.'
+      },
+      {
+        title: 'Ocean Dreams',
+        description: 'Waves crashing against the shore, carrying stories from distant shores and deep waters.',
+        date: 'March 12, 2024',
+        link: '/poems/ocean-dreams',
+        content: 'Waves dance upon the shore,\nTelling tales of yore and more.\nSalt and spray, a sweet perfume,\nBeneath the silver moon\'s soft bloom.\n\nOcean deep, mysteries keep,\nWhile the ancient waters sleep.\nCurrents strong, yet gentle flow,\nTaking dreams where they may go.'
+      },
+      {
+        title: 'Mountain Silence',
+        description: 'Standing tall among ancient peaks, finding peace in the solitude and strength of stone.',
+        date: 'March 8, 2024',
+        link: '/poems/mountain-silence',
+        content: 'Mountains rise in silent grace,\nTouching sky, they find their place.\nAncient stone and weathered face,\nStanding strong through time and space.\n\nIn their shadow, peace I find,\nQuiet moments for the mind.\nNature\'s cathedral, tall and grand,\nAcross this sacred, silent land.'
+      }
+    ]
   })
 
   const handlePoemEdit = (index, field, value) => {
@@ -27,9 +49,7 @@ export default function Poems() {
 
   const handleCardClick = (poem) => {
     if (!isEditing) {
-      if (poem.status === 'uncreated') {
-        alert('This poem page has not been created yet.')
-      } else if (poem.link) {
+      if (poem.link) {
         navigate(poem.link)
       }
     }
@@ -130,6 +150,14 @@ export default function Poems() {
                           delete
                         </button>
                       </div>
+                      <input
+                        type="text"
+                        value={poem.date || ''}
+                        onChange={(e) => handlePoemEdit(index, 'date', e.target.value)}
+                        className="text-slate-400 text-xs mb-3 bg-slate-600 border border-slate-500 rounded px-2 py-1 w-full"
+                        placeholder="Add date..."
+                        onClick={(e) => e.stopPropagation()}
+                      />
                       <textarea
                         value={poem.description}
                         onChange={(e) => handlePoemEdit(index, 'description', e.target.value)}
@@ -140,7 +168,8 @@ export default function Poems() {
                     </>
                   ) : (
                     <>
-                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">{poem.title}</h3>
+                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-2">{poem.title}</h3>
+                      <p className="text-slate-400 text-xs mb-3">{poem.date}</p>
                       <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">{poem.description}</p>
                     </>
                   )}
