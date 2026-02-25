@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
 import DirectorySideBar from '../components/DirectorySideBar'
-import { useNavigate } from 'react-router-dom'
 
 export default function Projects() {
   const navigate = useNavigate()
@@ -13,11 +12,8 @@ export default function Projects() {
         <div className="absolute top-20 right-20 w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-lg opacity-40 animate-float-orb-3 animation-delay-5000"></div>
       </div>
       
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <DirectorySideBar />
-          
-          <div className="lg:col-span-3 space-y-16 sm:space-y-20 lg:space-y-24">
+      <div className="container mx-auto max-w-4xl relative z-10">
+        <div className="space-y-16 sm:space-y-20 lg:space-y-24">
           {/* Archive Section */}
           <h2 id="archive" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 text-center mb-12 sm:mb-16 lg:mb-20">
             The <span className="text-royal-400">Archive</span>
@@ -141,10 +137,9 @@ export default function Projects() {
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">Community-focused projects and outreach programs that make a positive difference through collaboration, service, and innovative solutions.</p>
               </div>
             </div>
-          </div>
+        </div>
         </div>
       </div>
     </div>
-  </div>
   )
 }
