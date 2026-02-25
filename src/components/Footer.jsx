@@ -19,17 +19,10 @@ export default function Footer() {
       <footer className="bg-slate-900/95 backdrop-blur-md border-t border-slate-700 py-8 sm:py-6 px-4 sm:px-6">
         <div className="container mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-4">
-            {/* Copyright */}
-            <div className="text-center sm:text-left">
-              <p className="text-slate-300 text-sm sm:text-xs font-medium">
-                © {currentYear} Alexander Selga. All rights reserved.
-              </p>
-            </div>
-            
-            {/* Consolidated Authentication Controls */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-3 text-center">
+            {/* Authentication Controls - On top for mobile, right side for desktop */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-3 text-center sm:text-right">
               {isAuthenticated && isAdmin && (
-                <div className="flex items-center gap-2 sm:gap-2">
+                <div className="flex items-center gap-2 sm:gap-2 sm:hidden">
                   <span className="text-xs text-slate-400">Welcome, {user.name}</span>
                   <button
                     onClick={logout}
@@ -50,6 +43,13 @@ export default function Footer() {
               >
                 {isAuthenticated && isAdmin ? 'admin' : 'login'}
               </button>
+            </div>
+            
+            {/* Copyright - Below for mobile, left side for desktop */}
+            <div className="text-center sm:text-left">
+              <p className="text-slate-300 text-sm sm:text-xs font-medium">
+                {currentYear} Alexander Selga. All rights reserved.
+              </p>
             </div>
           </div>
         </div>

@@ -193,15 +193,6 @@ export default function JournalEntryPage() {
                 </svg>
                 Back to Journal Entries
               </button>
-              
-              {isAuthenticated && isAdmin && (
-                <button
-                  onClick={handleEditToggle}
-                  className="px-6 py-3 bg-slate-800/30 hover:bg-slate-700/30 text-slate-500 text-sm font-medium rounded transition-colors duration-300"
-                >
-                  {isEditing ? 'Save' : 'Edit'}
-                </button>
-              )}
             </div>
             
             <div className="text-slate-400 text-sm">

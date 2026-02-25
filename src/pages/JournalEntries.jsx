@@ -215,12 +215,6 @@ export default function JournalEntries() {
                 </button>
               </>
             )}
-            <button
-              onClick={handleEditToggle}
-              className="px-3 py-1 bg-slate-800/30 hover:bg-slate-700/30 text-slate-500 text-xs font-medium rounded transition-colors duration-300"
-            >
-              {isEditing ? 'save' : isAuthenticated && isAdmin ? 'edit' : 'login'}
-            </button>
           </div>
         </div>
       </div>
