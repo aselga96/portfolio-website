@@ -1,14 +1,6 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import AuthModal from '../components/AuthModal'
-import DeletedItemsManager from '../components/DeletedItemsManager'
-import { useAuth } from '../contexts/AuthContext'
+import { Link } from 'react-router-dom'
 
 export default function SpiritualReflections() {
-  const { user, isAuthenticated, isAdmin, login, logout } = useAuth()
-  const [showAuthModal, setShowAuthModal] = useState(false)
-  const navigate = useNavigate()
-
   const poem = {
     title: 'Spiritual Reflections',
     content: `Finding faith in the storm,
@@ -71,11 +63,6 @@ Created in the image of love.`
           </div>
         </div>
       </div>
-
-      {/* Auth Modal */}
-      {showAuthModal && (
-        <AuthModal onClose={() => setShowAuthModal(false)} />
-      )}
     </div>
   )
 }
