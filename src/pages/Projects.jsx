@@ -23,6 +23,11 @@ export default function Projects() {
           <div className="space-y-8 sm:space-y-10">
             {[
               {
+                title: 'Poems',
+                description: 'Spiritual reflections and creative expressions from personal journey',
+                link: '/poems'
+              },
+              {
                 title: 'Journal Entries',
                 description: 'Personal thoughts on daily life, growth, and meaningful moments',
                 link: '/journal-entries'
