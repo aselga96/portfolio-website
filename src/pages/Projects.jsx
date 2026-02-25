@@ -13,6 +13,7 @@ export default function Projects() {
       </div>
       
       <div className="container mx-auto max-w-4xl relative z-10">
+        <DirectorySideBar />
         <div className="space-y-16 sm:space-y-20 lg:space-y-24">
           {/* Archive Section */}
           <h2 id="archive" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 text-center mb-12 sm:mb-16 lg:mb-20">

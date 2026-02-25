@@ -11,33 +11,33 @@ export default function Poems() {
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
   const [poemsData, setPoemsData] = useState(() => {
-    // Load from localStorage or use default uncreated cards
+    // Load from localStorage or use default empty cards
     const savedData = localStorage.getItem('poemsData')
     if (savedData) {
       return JSON.parse(savedData)
     }
     return [
       {
-        title: 'Spiritual Reflections',
-        description: 'Finding faith in the storm, hearing divine whispers, building altars in ordinary places.',
+        title: '',
+        description: '',
         link: null, // No individual page
         status: 'uncreated'
       },
       {
-        title: 'Nature\'s Wisdom',
-        description: 'Forest patience, ocean changes, mountain strength through perseverance.',
+        title: '',
+        description: '',
         link: null, // No individual page
         status: 'uncreated'
       },
       {
-        title: 'Human Connection',
-        description: 'Coffee conversations, being truly seen, community garden bonds.',
+        title: '',
+        description: '',
         link: null, // No individual page
         status: 'uncreated'
       },
       {
-        title: 'Hope and Renewal',
-        description: 'Morning light after dark nights, spring\'s rebellion, flowers through concrete.',
+        title: '',
+        description: '',
         link: null, // No individual page
         status: 'uncreated'
       }

@@ -11,38 +11,38 @@ export default function JournalEntries() {
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
   const [journalData, setJournalData] = useState(() => {
-    // Load from localStorage or use default uncreated cards
+    // Load from localStorage or use default empty cards
     const savedData = localStorage.getItem('journalData')
     if (savedData) {
       return JSON.parse(savedData)
     }
     return [
       {
-        title: 'Daily Reflections',
-        description: 'Thoughts and observations from everyday experiences, finding meaning in ordinary moments and celebrating small victories.',
+        title: '',
+        description: '',
         link: null, // No individual page
-        date: 'April 10, 2024',
+        date: '',
         status: 'uncreated'
       },
       {
-        title: 'Life Updates',
-        description: 'Personal milestones, achievements, and significant life events that mark the journey of growth and discovery.',
+        title: '',
+        description: '',
         link: null, // No individual page
-        date: 'April 8, 2024',
+        date: '',
         status: 'uncreated'
       },
       {
-        title: 'Growth Journey',
-        description: 'Personal development insights, learning experiences, and the ongoing process of becoming a better version of myself.',
+        title: '',
+        description: '',
         link: null, // No individual page
-        date: 'April 5, 2024',
+        date: '',
         status: 'uncreated'
       },
       {
-        title: 'Meaningful Moments',
-        description: 'Capturing the small but significant moments that bring joy, wisdom, and perspective to everyday life.',
+        title: '',
+        description: '',
         link: null, // No individual page
-        date: 'April 3, 2024',
+        date: '',
         status: 'uncreated'
       }
     ]
