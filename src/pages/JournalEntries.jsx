@@ -97,7 +97,7 @@ export default function JournalEntries() {
   }
 
   return (
-    <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-br from-midnight-900 via-slate-900 to-blue-950">
+    <div className="min-h-screen py-20 sm:py-24 md:py-28 lg:py-32 px-6 sm:px-8 md:px-12 lg:px-16 relative overflow-hidden bg-gradient-to-br from-midnight-900 via-slate-900 to-blue-950">
       {/* Animated Background Orbs */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-slate-700 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-float-orb-1"></div>
@@ -108,12 +108,12 @@ export default function JournalEntries() {
       <div className="container mx-auto max-w-6xl relative z-10">
         <DirectorySideBar />
         
-        <div className="lg:col-span-3 space-y-16 sm:space-y-20 lg:space-y-24">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-100 text-center mb-12 sm:mb-16 lg:mb-20">
+        <div className="lg:col-span-3 space-y-20 sm:space-y-24 lg:space-y-28">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-100 text-center mb-16 sm:mb-20 lg:mb-24">
             <span className="text-royal-400">Journal Entries</span>
           </h1>
           
-          <div className="space-y-6 sm:space-y-8">
+          <div className="space-y-8 sm:space-y-10 lg:space-y-12">
             {journalData.map((journal, index) => (
               <div
                 key={index}
@@ -122,7 +122,7 @@ export default function JournalEntries() {
                 }`}
                 onClick={() => handleCardClick(journal)}
               >
-                <div className="flex-1 p-4 sm:p-6 text-left">
+                <div className="flex-1 p-6 sm:p-8 md:p-10 text-left">
                   {isEditing && isAdmin ? (
                     <>
                       <div className="flex justify-between items-start mb-3">

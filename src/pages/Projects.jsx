@@ -4,7 +4,7 @@ import DirectorySideBar from '../components/DirectorySideBar'
 export default function Projects() {
   const navigate = useNavigate()
   return (
-    <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-br from-midnight-900 via-slate-900 to-blue-950">
+    <div className="min-h-screen py-24 sm:py-32 px-6 sm:px-8 md:px-12 lg:px-16 relative overflow-hidden bg-gradient-to-br from-midnight-900 via-slate-900 to-blue-950">
       {/* Animated Background Orbs */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-slate-700 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-float-orb-1"></div>
@@ -14,10 +14,10 @@ export default function Projects() {
       
       <div className="container mx-auto max-w-4xl relative z-10">
         <DirectorySideBar />
-        <div className="space-y-16 sm:space-y-20 lg:space-y-24">
+        <div className="space-y-20 sm:space-y-24 lg:space-y-28">
           {/* Archive Section */}
-          <h2 id="archive" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 text-center mb-12 sm:mb-16 lg:mb-20">
-            The <span className="text-royal-400">Archive</span>
+          <h2 id="archive" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-100 text-center mb-4 sm:mb-6">
+            The <span className="bg-gradient-to-r from-royal-400 via-blue-500 to-midnight-400 bg-clip-text text-transparent animate-gradient">Archive</span>
           </h2>
           <div className="space-y-8 sm:space-y-10">
             {[
@@ -39,7 +39,7 @@ export default function Projects() {
                 }`}
                 onClick={() => entry.link && navigate(entry.link)}
               >
-                <div className="flex-1 p-6 sm:p-8 text-left">
+                <div className="flex-1 p-8 sm:p-10 text-left">
                   <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">{entry.title}</h3>
                   <p className="text-slate-300 text-sm sm:text-base leading-relaxed">{entry.description}</p>
                   {entry.link && (
@@ -51,8 +51,8 @@ export default function Projects() {
           </div>
           
           {/* Work Experience Section */}
-          <h2 id="work-experience" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 text-center mb-12 sm:mb-16 lg:mb-20">
-            Work <span className="text-royal-400">Experience</span>
+          <h2 id="work-experience" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-100 text-center mb-4 sm:mb-6">
+            Work <span className="bg-gradient-to-r from-royal-400 via-blue-500 to-midnight-400 bg-clip-text text-transparent animate-gradient">Experience</span>
           </h2>
           <div className="space-y-8 sm:space-y-10">
             {[
@@ -76,7 +76,7 @@ export default function Projects() {
                 key={index}
                 className="group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm"
               >
-                <div className="flex-1 p-6 sm:p-8 text-left">
+                <div className="flex-1 p-8 sm:p-10 text-left">
                   <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">{project.title}</h3>
                   <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -95,14 +95,14 @@ export default function Projects() {
           </div>
 
           {/* Skills Development Section */}
-          <h2 id="skills-development" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 text-center mb-12 sm:mb-16 lg:mb-20">
-            Skills <span className="text-royal-400">Development</span>
+          <h2 id="skills-development" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-100 text-center mb-4 sm:mb-6">
+            Skills <span className="bg-gradient-to-r from-royal-400 via-blue-500 to-midnight-400 bg-clip-text text-transparent animate-gradient">Development</span>
           </h2>
           <div className="space-y-8 sm:space-y-10">
             <div
               className="group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm"
             >
-              <div className="flex-1 p-6 sm:p-8 text-left">
+              <div className="flex-1 p-8 sm:p-10 text-left">
                 <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">Professional Growth</h3>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">Continuous learning and skill development in customer service, hospitality management, and community engagement through various training programs and hands-on experience.</p>
               </div>
@@ -110,7 +110,7 @@ export default function Projects() {
             <div
               className="group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm"
             >
-              <div className="flex-1 p-6 sm:p-8 text-left">
+              <div className="flex-1 p-8 sm:p-10 text-left">
                 <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">Technical Expertise</h3>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">Advanced technical skills and modern methodologies in web development, system architecture, and digital transformation projects.</p>
               </div>
@@ -118,14 +118,14 @@ export default function Projects() {
           </div>
 
           {/* Personal Projects Section */}
-          <h2 id="personal-projects" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 text-center mb-12 sm:mb-16 lg:mb-20">
-            Personal <span className="text-royal-400">Projects</span>
+          <h2 id="personal-projects" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-100 text-center mb-4 sm:mb-6">
+            Personal <span className="bg-gradient-to-r from-royal-400 via-blue-500 to-midnight-400 bg-clip-text text-transparent animate-gradient">Projects</span>
           </h2>
           <div className="space-y-8 sm:space-y-10">
             <div
               className="group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm"
             >
-              <div className="flex-1 p-6 sm:p-8 text-left">
+              <div className="flex-1 p-8 sm:p-10 text-left">
                 <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">Creative Endeavors</h3>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">Personal creative projects and initiatives that showcase innovation, problem-solving abilities, and passion for making a positive impact in various domains.</p>
               </div>
@@ -133,7 +133,7 @@ export default function Projects() {
             <div
               className="group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm"
             >
-              <div className="flex-1 p-6 sm:p-8 text-left">
+              <div className="flex-1 p-8 sm:p-10 text-left">
                 <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">Community Impact</h3>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">Community-focused projects and outreach programs that make a positive difference through collaboration, service, and innovative solutions.</p>
               </div>
