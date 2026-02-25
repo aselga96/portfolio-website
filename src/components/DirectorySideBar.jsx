@@ -86,20 +86,20 @@ export default function DirectorySideBar() {
               </a>
               
               {/* Poems and Journal Entries as branches */}
-              <a
-                href="/poems"
-                onClick={(e) => handleLinkClick(e, 'poems', '/poems')}
+              <Link
+                to="/poems"
+                onClick={() => setIsOpen(false)}
                 className="block p-2 text-slate-400 hover:text-royal-400 transition-colors text-sm ml-8"
               >
                 Poems
-              </a>
-              <a
-                href="/journal-entries"
-                onClick={(e) => handleLinkClick(e, 'journal-entries', '/journal-entries')}
+              </Link>
+              <Link
+                to="/journal-entries"
+                onClick={() => setIsOpen(false)}
                 className="block p-2 text-slate-400 hover:text-royal-400 transition-colors text-sm ml-8"
               >
                 Journal Entries
-              </a>
+              </Link>
             </div>
             
             {/* Work Experience with spacing */}

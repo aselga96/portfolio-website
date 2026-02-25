@@ -184,10 +184,10 @@ export default function JournalEntries() {
           
           <div className="text-center mt-16 space-x-4">
             <Link 
-              to="/projects"
+              to="/"
               className="inline-flex items-center px-6 sm:px-8 py-3 bg-royal-600 hover:bg-royal-700 text-slate-100 font-medium rounded-lg transition-colors duration-300"
             >
-              ← Back to Projects
+              ← Back to Home
             </Link>
           </div>
 

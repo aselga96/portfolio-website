@@ -70,6 +70,8 @@ function Navigation() {
               <Link to="/" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">home</Link>
               <Link to="/about" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">about</Link>
               <Link to="/projects" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">projects</Link>
+              <Link to="/poems" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">poems</Link>
+              <Link to="/journal-entries" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">journal</Link>
               <Link to="/contact" className="capitalize font-medium text-slate-300 hover:text-royal-400 transition-all duration-300">contact</Link>
               <button
                 onClick={handleAuthClick}
@@ -132,6 +134,20 @@ function Navigation() {
                 className="capitalize font-medium text-slate-200 hover:text-royal-400 transition-all duration-300 py-2 hover:scale-105"
               >
                 projects
+              </Link>
+              <Link 
+                to="/poems" 
+                onClick={closeMenu}
+                className="capitalize font-medium text-slate-200 hover:text-royal-400 transition-all duration-300 py-2 hover:scale-105"
+              >
+                poems
+              </Link>
+              <Link 
+                to="/journal-entries" 
+                onClick={closeMenu}
+                className="capitalize font-medium text-slate-200 hover:text-royal-400 transition-all duration-300 py-2 hover:scale-105"
+              >
+                journal
               </Link>
               <Link 
                 to="/contact" 
