@@ -63,7 +63,7 @@ export default function DirectorySideBar() {
       </button>
 
       {/* Sidebar Menu */}
-      <div className={`fixed left-0 top-16 h-full w-72 bg-slate-900/98 backdrop-blur-xl border-r border-slate-700/50 shadow-2xl z-40 transition-all duration-300 ease-in-out ${
+      <div className={`fixed left-0 top-0 h-full w-72 bg-slate-900/98 backdrop-blur-xl border-r border-slate-700/50 shadow-2xl z-40 transition-all duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="flex flex-col h-full p-6 pt-20">

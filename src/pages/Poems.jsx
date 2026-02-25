@@ -56,15 +56,8 @@ export default function Poems() {
   }
 
   const handleBack = () => {
-    // Check if we came from Projects page (most likely via DirectorySideBar)
-    const referrer = document.referrer
-    const fromProjects = referrer.includes('/projects') || location.state?.from === 'projects'
-    
-    if (fromProjects || window.history.length <= 2) {
-      navigate('/projects')
-    } else {
-      navigate(-1)
-    }
+    // Always navigate to Projects page
+    navigate('/projects')
   }
 
   const handleAddCard = () => {
@@ -107,9 +100,9 @@ export default function Poems() {
     <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-br from-midnight-900 via-slate-900 to-blue-950">
       {/* Animated Background Orbs */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-slate-700 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-float-orb-1"></div>
-        <div className="absolute bottom-10 right-10 w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-royal-600 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-float-orb-2 animation-delay-3000"></div>
-        <div className="absolute top-20 right-20 w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-lg opacity-40 animate-float-orb-3 animation-delay-5000"></div>
+        <div className="absolute top-10 left-10 w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-slate-700 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-float-orb-1"></div>
+        <div className="absolute bottom-10 right-10 w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-royal-600 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-float-orb-2 animation-delay-3000"></div>
+        <div className="absolute top-20 right-20 w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-lg opacity-50 animate-float-orb-3 animation-delay-4000"></div>
       </div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
@@ -198,12 +191,15 @@ export default function Poems() {
             )}
           </div>
           
-          <div className="text-center mt-16 space-x-4">
+          <div className="text-center mt-16">
             <button 
               onClick={handleBack}
-              className="inline-flex items-center px-6 sm:px-8 py-3 bg-royal-600 hover:bg-royal-700 text-slate-100 font-medium rounded-lg transition-colors duration-300"
+              className="inline-flex items-center px-8 py-3 bg-royal-600 hover:bg-royal-700 text-slate-100 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              ← Back
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back to Projects
             </button>
           </div>
 
