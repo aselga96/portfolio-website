@@ -40,7 +40,7 @@ function Navigation() {
     <>
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isHomePage 
-          ? 'opacity-0 hover:opacity-100 bg-slate-900/95 backdrop-blur-md hover:shadow-lg hover:border-b hover:border-slate-700' 
+          ? 'opacity-0 hover:opacity-100 bg-slate-900/95 backdrop-blur-md hover:shadow-lg hover:border-b hover:border-slate-700 pointer-events-none hover:pointer-events-auto' 
           : 'bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-700'
       }`}>
         <div className="container mx-auto px-4 sm:px-6 py-4">
