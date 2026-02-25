@@ -12,7 +12,10 @@ import NaturesWisdom from './pages/NaturesWisdom'
 import HumanConnection from './pages/HumanConnection'
 import HopeAndRenewal from './pages/HopeAndRenewal'
 import JournalEntries from './pages/JournalEntries'
-import JournalEntryPage from './pages/JournalEntryPage'
+import DailyReflections from './pages/DailyReflections'
+import LifeUpdates from './pages/LifeUpdates'
+import GrowthJourney from './pages/GrowthJourney'
+import MeaningfulMoments from './pages/MeaningfulMoments'
 import Contact from './pages/Contact'
 
 // Import components
@@ -188,7 +191,10 @@ export default function App() {
               <Route path="/poems/human-connection" element={<HumanConnection />} />
               <Route path="/poems/hope-and-renewal" element={<HopeAndRenewal />} />
               <Route path="/journal-entries" element={<JournalEntries />} />
-              <Route path="/journal-entries/:entryId" element={<JournalEntryPage />} />
+              <Route path="/journal-entries/daily-reflections" element={<DailyReflections />} />
+              <Route path="/journal-entries/life-updates" element={<LifeUpdates />} />
+              <Route path="/journal-entries/growth-journey" element={<GrowthJourney />} />
+              <Route path="/journal-entries/meaningful-moments" element={<MeaningfulMoments />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </main>
