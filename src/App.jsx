@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+import { Analytics } from '@vercel/analytics/react'
 
 // Import pages
 import Home from './pages/Home'
@@ -161,29 +162,32 @@ export default function App() {
   useViewportHeight()
   
   return (
-    <AuthProvider>
-      <Router>
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-midnight-950 flex flex-col">
-          <Navigation />
-          
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/poems" element={<Poems />} />
-              <Route path="/poems/:poemId" element={<PoemPage />} />
-              <Route path="/journal-entries" element={<JournalEntries />} />
-              <Route path="/journal-entries/:entryId" element={<JournalEntryPage />} />
-              <Route path="*" element={<Home />} />
-            </Routes>
-          </main>
+    <>
+      <AuthProvider>
+        <Router>
+          <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-midnight-950 flex flex-col">
+            <Navigation />
+            
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/poems" element={<Poems />} />
+                <Route path="/poems/:poemId" element={<PoemPage />} />
+                <Route path="/journal-entries" element={<JournalEntries />} />
+                <Route path="/journal-entries/:entryId" element={<JournalEntryPage />} />
+                <Route path="*" element={<Home />} />
+              </Routes>
+            </main>
 
-          {/* Footer with Consolidated Auth Controls */}
-          <Footer />
-        </div>
-      </Router>
-    </AuthProvider>
+            {/* Footer with Consolidated Auth Controls */}
+            <Footer />
+          </div>
+        </Router>
+      </AuthProvider>
+      <Analytics />
+    </>
   )
 }
