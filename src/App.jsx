@@ -15,24 +15,38 @@ import Contact from './pages/Contact'
 // Import components
 import Footer from './components/Footer'
 
-// Mobile viewport height fix
+// Mobile viewport height fix - allow natural address bar behavior
 const useViewportHeight = () => {
   useEffect(() => {
     const setViewportHeight = () => {
+      // Calculate the actual viewport height
       const vh = window.innerHeight * 0.01
       document.documentElement.style.setProperty('--vh', `${vh}px`)
+      
+      // Also set a fallback for browsers that don't support CSS custom properties
+      const root = document.documentElement
+      root.style.height = `${window.innerHeight}px`
     }
 
     // Set initial viewport height
     setViewportHeight()
 
     // Update viewport height on resize and orientation change
-    window.addEventListener('resize', setViewportHeight)
-    window.addEventListener('orientationchange', setViewportHeight)
+    // But not on scroll to allow natural address bar behavior
+    const handleResize = () => {
+      setViewportHeight()
+    }
+    
+    const handleOrientationChange = () => {
+      setTimeout(setViewportHeight, 100) // Delay for orientation change
+    }
+
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleOrientationChange)
 
     return () => {
-      window.removeEventListener('resize', setViewportHeight)
-      window.removeEventListener('orientationchange', setViewportHeight)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('orientationchange', handleOrientationChange)
     }
   }, [])
 }

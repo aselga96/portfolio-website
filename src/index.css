@@ -2,30 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Mobile Viewport Fix - Prevents search bar from scrolling */
+/* Mobile Viewport Fix - Allow natural address bar behavior while preventing layout shifts */
 /* Use CSS custom properties for better mobile viewport handling */
 :root {
   --vh: 1vh;
 }
 
-/* Fix for mobile browsers that hide/show address bar */
+/* Fix for mobile browsers that hide/show address bar - allow natural behavior */
 @media (max-width: 768px) {
-  /* Prevent mobile browser from hiding/showing address bar on scroll */
+  /* Allow natural address bar hiding/showing but prevent layout shifts */
   html {
-    position: fixed;
-    width: 100%;
     height: 100%;
-    overflow: hidden;
+    position: relative;
   }
   
   body {
-    width: 100%;
     height: 100%;
-    overflow: auto;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: calc(var(--vh, 1vh) * 100);
     -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
   }
   
-  /* Ensure full viewport height on mobile */
+  /* Ensure full viewport height on mobile with dynamic calculation */
   .min-h-screen {
     min-height: 100vh;
     min-height: -webkit-fill-available;
@@ -34,9 +34,23 @@
   
   /* Fix for iOS Safari */
   @supports (-webkit-touch-callout: none) {
+    html, body {
+      height: -webkit-fill-available;
+    }
+    
     .min-h-screen {
       min-height: -webkit-fill-available;
     }
+  }
+  
+  /* Prevent layout shifts during address bar transitions */
+  * {
+    transition: none !important;
+  }
+  
+  /* Allow transitions for specific interactive elements */
+  button, a, .transition-all, .transition-colors, .transition-transform {
+    transition: all 0.3s ease !important;
   }
 }
 
@@ -45,6 +59,7 @@
   html, body {
     position: static;
     overflow: visible;
+    height: auto;
   }
 }
 
