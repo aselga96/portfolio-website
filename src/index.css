@@ -2,6 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile Viewport Fix - Prevents search bar from scrolling */
+/* Use CSS custom properties for better mobile viewport handling */
+:root {
+  --vh: 1vh;
+}
+
+/* Fix for mobile browsers that hide/show address bar */
+@media (max-width: 768px) {
+  /* Prevent mobile browser from hiding/showing address bar on scroll */
+  html {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure full viewport height on mobile */
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+  
+  /* Fix for iOS Safari */
+  @supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+      min-height: -webkit-fill-available;
+    }
+  }
+}
+
+/* Alternative approach for desktop browsers */
+@media (min-width: 769px) {
+  html, body {
+    position: static;
+    overflow: visible;
+  }
+}
+
 /* Custom Animations */
 @keyframes float {
   0% {

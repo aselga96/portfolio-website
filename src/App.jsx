@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 
@@ -14,6 +14,28 @@ import Contact from './pages/Contact'
 
 // Import components
 import Footer from './components/Footer'
+
+// Mobile viewport height fix
+const useViewportHeight = () => {
+  useEffect(() => {
+    const setViewportHeight = () => {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    }
+
+    // Set initial viewport height
+    setViewportHeight()
+
+    // Update viewport height on resize and orientation change
+    window.addEventListener('resize', setViewportHeight)
+    window.addEventListener('orientationchange', setViewportHeight)
+
+    return () => {
+      window.removeEventListener('resize', setViewportHeight)
+      window.removeEventListener('orientationchange', setViewportHeight)
+    }
+  }, [])
+}
 
 function Navigation() {
   const location = useLocation()
@@ -120,6 +142,9 @@ function Navigation() {
 
 export default function App() {
   const currentYear = new Date().getFullYear()
+  
+  // Apply mobile viewport height fix
+  useViewportHeight()
   
   return (
     <AuthProvider>
