@@ -11,46 +11,46 @@ export default function JournalEntries() {
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
-  const [journalData, setJournalData] = useState(() => {
-    // Clear old localStorage data and use sample journal entries
-    localStorage.removeItem('journalData')
+  const [newsletterData, setNewsletterData] = useState(() => {
+    // Clear old localStorage data and use sample newsletter entries
+    localStorage.removeItem('newsletterData')
     return [
       {
         title: 'A New Beginning',
         description: 'Starting fresh with new perspectives and embracing the journey ahead with open heart and mind.',
         date: 'March 15, 2024',
-        link: '/journal-entries/a-new-beginning',
+        link: '/newsletters/a-new-beginning',
         content: 'Today marks the beginning of a new chapter in my life. As I sit here reflecting on the past few months, I realize how much growth has occurred. The challenges I faced seemed insurmountable at times, but each one taught me valuable lessons about resilience and perseverance.\n\nI\'ve learned that true strength isn\'t about never falling, but about getting back up every time we fall. It\'s about finding courage in the face of uncertainty and trusting that everything happens for a reason.\n\nMoving forward, I\'m committed to embracing change with grace and maintaining a positive outlook, no matter what obstacles come my way.'
       },
       {
         title: 'Lessons from Nature',
         description: 'Finding wisdom in the natural world and discovering how much we can learn from observing the cycles of life.',
         date: 'March 10, 2024',
-        link: '/journal-entries/lessons-from-nature',
+        link: '/newsletters/lessons-from-nature',
         content: 'Spending time in nature has always been a source of inspiration and clarity for me. Yesterday, I watched a spider carefully weaving its web, each thread placed with precision and purpose. It reminded me of how we too must be deliberate in building our lives.\n\nThe changing seasons teach us about impermanence and the beauty of letting go. Just as trees shed their leaves in autumn, we too must release what no longer serves us to make room for new growth.\n\nNature operates on its own timeline, never rushing, never questioning. There\'s a profound lesson in that patience and trust in the process.'
       },
       {
         title: 'The Power of Connection',
         description: 'Exploring the importance of meaningful relationships and how they shape our journey through life.',
         date: 'March 5, 2024',
-        link: '/journal-entries/the-power-of-connection',
+        link: '/newsletters/the-power-of-connection',
         content: 'This week I had several conversations that reminded me of the profound impact human connection has on our wellbeing. In a world that often feels disconnected, these moments of genuine understanding and shared experience are precious.\n\nI\'ve noticed that the most meaningful relationships aren\'t always the easiest. Sometimes they require difficult conversations, vulnerability, and the courage to be truly seen. But the rewards - trust, intimacy, mutual growth - are immeasurable.\n\nIt\'s easy to get caught up in the busyness of life and forget to nurture these connections. I\'m making a commitment to reach out more regularly, to listen more deeply, and to show up fully for the people who matter most.'
       }
     ]
   })
 
-  const handleJournalEdit = (index, field, value) => {
-    const updatedData = [...journalData]
+  const handleNewsletterEdit = (index, field, value) => {
+    const updatedData = [...newsletterData]
     updatedData[index][field] = value
-    setJournalData(updatedData)
+    setNewsletterData(updatedData)
     // Save to localStorage for persistence
-    localStorage.setItem('journalData', JSON.stringify(updatedData))
+    localStorage.setItem('newsletterData', JSON.stringify(updatedData))
   }
 
-  const handleCardClick = (journal) => {
+  const handleCardClick = (newsletter) => {
     if (!isEditing) {
-      if (journal.link) {
-        navigate(journal.link)
+      if (newsletter.link) {
+        navigate(newsletter.link)
       }
     }
   }
@@ -62,30 +62,30 @@ export default function JournalEntries() {
 
   const handleAddCard = () => {
     const newCard = {
-      title: 'New Journal Entry',
-      description: 'Click edit to customize this journal entry',
-      link: `/journal-entries/new-journal-${Date.now()}`
+      title: 'New Newsletter Entry',
+      description: 'Click edit to customize this newsletter entry',
+      link: `/newsletters/new-newsletter-${Date.now()}`
     }
-    const updatedData = [...journalData, newCard]
-    setJournalData(updatedData)
+    const updatedData = [...newsletterData, newCard]
+    setNewsletterData(updatedData)
     // Save to localStorage for persistence
-    localStorage.setItem('journalData', JSON.stringify(updatedData))
+    localStorage.setItem('newsletterData', JSON.stringify(updatedData))
   }
 
   const handleDeleteCard = (index) => {
-    const updatedData = journalData.filter((_, i) => i !== index)
-    setJournalData(updatedData)
+    const updatedData = newsletterData.filter((_, i) => i !== index)
+    setNewsletterData(updatedData)
     // Save to localStorage for persistence
-    localStorage.setItem('journalData', JSON.stringify(updatedData))
+    localStorage.setItem('newsletterData', JSON.stringify(updatedData))
     
     // Optional: Mark as deleted in a separate log
-    const deletedLog = JSON.parse(localStorage.getItem('deletedJournalEntries') || '[]')
+    const deletedLog = JSON.parse(localStorage.getItem('deletedNewsletterEntries') || '[]')
     deletedLog.push({
-      item: journalData[index],
+      item: newsletterData[index],
       deletedAt: new Date().toISOString(),
       reason: 'admin_delete'
     })
-    localStorage.setItem('deletedJournalEntries', JSON.stringify(deletedLog))
+    localStorage.setItem('deletedNewsletterEntries', JSON.stringify(deletedLog))
   }
 
   const handleEditToggle = () => {
@@ -111,18 +111,18 @@ export default function JournalEntries() {
         <div className="lg:col-span-3 space-y-20 sm:space-y-24 lg:space-y-28">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-100 text-center mb-4 sm:mb-6">
-              <span className="text-royal-400">Journal Entries</span>
+              <span className="text-royal-400">Newsletters</span>
             </h1>
           </div>
           
           <div className="space-y-8 sm:space-y-10 lg:space-y-12">
-            {journalData.map((journal, index) => (
+            {newsletterData.map((newsletter, index) => (
               <div
                 key={index}
                 className={`group relative bg-slate-700/90 backdrop-blur-md rounded-xl overflow-hidden border border-slate-400/50 hover:transform hover:scale-[1.01] transition-all duration-300 shadow-sm ${
                   !isEditing && 'cursor-pointer'
                 }`}
-                onClick={() => handleCardClick(journal)}
+                onClick={() => handleCardClick(newsletter)}
               >
                 <div className="flex-1 p-6 sm:p-8 md:p-10 text-left">
                   {isEditing && isAdmin ? (
@@ -130,8 +130,8 @@ export default function JournalEntries() {
                       <div className="flex justify-between items-start mb-3">
                         <input
                           type="text"
-                          value={journal.title}
-                          onChange={(e) => handleJournalEdit(index, 'title', e.target.value)}
+                          value={newsletter.title}
+                          onChange={(e) => handleNewsletterEdit(index, 'title', e.target.value)}
                           className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 bg-slate-600 border border-slate-500 rounded px-2 py-1 flex-1"
                           onClick={(e) => e.stopPropagation()}
                         />
@@ -146,33 +146,33 @@ export default function JournalEntries() {
                         </button>
                       </div>
                       <textarea
-                        value={journal.description}
-                        onChange={(e) => handleJournalEdit(index, 'description', e.target.value)}
+                        value={newsletter.description}
+                        onChange={(e) => handleNewsletterEdit(index, 'description', e.target.value)}
                         className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4 bg-slate-600 border border-slate-500 rounded px-2 py-1 w-full resize-none"
                         rows={2}
                         onClick={(e) => e.stopPropagation()}
                       />
                       <input
                         type="text"
-                        value={journal.date}
-                        onChange={(e) => handleJournalEdit(index, 'date', e.target.value)}
+                        value={newsletter.date}
+                        onChange={(e) => handleNewsletterEdit(index, 'date', e.target.value)}
                         className="text-xs sm:text-sm text-royal-400 font-medium bg-slate-600 border border-slate-500 rounded px-2 py-1 w-full"
                         onClick={(e) => e.stopPropagation()}
                       />
                     </>
                   ) : (
                     <>
-                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">{journal.title}</h3>
-                      <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">{journal.description}</p>
-                      <div className="text-xs sm:text-sm text-slate-400 italic mb-2">{journal.date}</div>
+                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 mb-3">{newsletter.title}</h3>
+                      <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">{newsletter.description}</p>
+                      <div className="text-xs sm:text-sm text-slate-400 italic mb-2">{newsletter.date}</div>
                     </>
                   )}
                   <div className={`text-xs sm:text-sm font-medium transition-colors duration-300 ${
-                    journal.status === 'uncreated' 
+                    newsletter.status === 'uncreated' 
                       ? 'text-slate-500 italic' 
                       : 'text-royal-400 hover:text-royal-300'
                   }`}>
-                    {journal.status === 'uncreated' ? 'Page not created yet' : 'Click to explore →'}
+                    {newsletter.status === 'uncreated' ? 'Page not created yet' : 'Click to explore →'}
                   </div>
                 </div>
               </div>
@@ -185,8 +185,8 @@ export default function JournalEntries() {
                 onClick={handleAddCard}
               >
                 <div className="flex-1 p-6 sm:p-8 text-center">
-                  <div className="text-slate-400 text-sm sm:text-base font-medium mb-2">+ Add New Journal Entry</div>
-                  <div className="text-slate-500 text-xs">Click to create a new journal entry</div>
+                  <div className="text-slate-400 text-sm sm:text-base font-medium mb-2">+ Add New Newsletter Entry</div>
+                  <div className="text-slate-500 text-xs">Click to create a new newsletter entry</div>
                 </div>
               </div>
             )}

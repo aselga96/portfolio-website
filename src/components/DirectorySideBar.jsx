@@ -100,12 +100,12 @@ export default function DirectorySideBar() {
                   Poems
                 </Link>
                 <Link
-                  to="/journal-entries"
+                  to="/newsletters"
                   state={{ from: 'projects' }}
-                  onClick={() => handleNavigation('/journal-entries')}
+                  onClick={() => handleNavigation('/newsletters')}
                   className="block px-4 py-3 text-slate-400 hover:text-royal-400 hover:bg-slate-800/20 rounded-md transition-all duration-200 text-base"
                 >
-                  Journal Entries
+                  Newsletters
                 </Link>
               </div>
             </div>

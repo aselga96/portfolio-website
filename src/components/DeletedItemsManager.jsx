@@ -3,29 +3,29 @@ import { useAuth } from '../contexts/AuthContext'
 
 export default function DeletedItemsManager() {
   const { user, isAuthenticated, isAdmin } = useAuth()
-  const [deletedJournalEntries, setDeletedJournalEntries] = useState([])
+  const [deletedNewsletterEntries, setDeletedNewsletterEntries] = useState([])
   const [deletedPoems, setDeletedPoems] = useState([])
   const [showDeletedItems, setShowDeletedItems] = useState(false)
 
   useEffect(() => {
     if (isAuthenticated && isAdmin) {
-      const journalEntries = JSON.parse(localStorage.getItem('deletedJournalEntries') || '[]')
+      const newsletterEntries = JSON.parse(localStorage.getItem('deletedNewsletterEntries') || '[]')
       const poems = JSON.parse(localStorage.getItem('deletedPoems') || '[]')
-      setDeletedJournalEntries(journalEntries)
+      setDeletedNewsletterEntries(newsletterEntries)
       setDeletedPoems(poems)
     }
   }, [isAuthenticated, isAdmin])
 
-  const restoreJournalEntry = (index) => {
-    const item = deletedJournalEntries[index]
-    const currentJournalData = JSON.parse(localStorage.getItem('journalData') || '[]')
-    currentJournalData.push(item.item)
-    localStorage.setItem('journalData', JSON.stringify(currentJournalData))
+  const restoreNewsletterEntry = (index) => {
+    const item = deletedNewsletterEntries[index]
+    const currentNewsletterData = JSON.parse(localStorage.getItem('newsletterData') || '[]')
+    currentNewsletterData.push(item.item)
+    localStorage.setItem('newsletterData', JSON.stringify(currentNewsletterData))
     
     // Remove from deleted log
-    const updatedDeleted = deletedJournalEntries.filter((_, i) => i !== index)
-    setDeletedJournalEntries(updatedDeleted)
-    localStorage.setItem('deletedJournalEntries', JSON.stringify(updatedDeleted))
+    const updatedDeleted = deletedNewsletterEntries.filter((_, i) => i !== index)
+    setDeletedNewsletterEntries(updatedDeleted)
+    localStorage.setItem('deletedNewsletterEntries', JSON.stringify(updatedDeleted))
     
     // Trigger page refresh to show restored item
     window.location.reload()
@@ -50,7 +50,7 @@ export default function DeletedItemsManager() {
     return null
   }
 
-  const totalDeleted = deletedJournalEntries.length + deletedPoems.length
+  const totalDeleted = deletedNewsletterEntries.length + deletedPoems.length
 
   return (
     <div className="fixed bottom-24 left-4 z-50">
@@ -65,14 +65,14 @@ export default function DeletedItemsManager() {
         <div className="absolute bottom-12 left-0 bg-slate-800/95 backdrop-blur-md border border-slate-600 rounded-lg shadow-2xl p-4 w-80 max-h-60 overflow-y-auto">
           <h3 className="text-sm font-medium text-slate-200 mb-3">Deleted Items</h3>
           
-          {deletedJournalEntries.length > 0 && (
+          {deletedNewsletterEntries.length > 0 && (
             <div className="mb-4">
-              <h4 className="text-xs font-medium text-slate-400 mb-2">Journal Entries</h4>
-              {deletedJournalEntries.map((item, index) => (
+              <h4 className="text-xs font-medium text-slate-400 mb-2">Newsletters</h4>
+              {deletedNewsletterEntries.map((item, index) => (
                 <div key={index} className="flex justify-between items-center py-1">
                   <span className="text-xs text-slate-300 truncate">{item.item.title}</span>
                   <button
-                    onClick={() => restoreJournalEntry(index)}
+                    onClick={() => restoreNewsletterEntry(index)}
                     className="ml-2 px-2 py-1 bg-green-600/20 hover:bg-green-600/30 text-green-400 text-xs rounded"
                   >
                     Restore

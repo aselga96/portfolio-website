@@ -16,9 +16,9 @@ export default function Projects() {
       link: '/poems'
     },
     {
-      title: 'Journal Entries',
+      title: 'Newsletters',
       description: 'Personal thoughts on daily life, growth, and meaningful moments',
-      link: '/journal-entries'
+      link: '/newsletters'
     }
   ])
   

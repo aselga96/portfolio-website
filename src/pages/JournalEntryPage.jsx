@@ -7,68 +7,68 @@ export default function JournalEntryPage() {
   const { entryId } = useParams()
   const navigate = useNavigate()
   const { isAuthenticated, isAdmin } = useAuth()
-  const [journal, setJournal] = useState(null)
+  const [newsletter, setNewsletter] = useState(null)
   const [loading, setLoading] = useState(true)
   const [isEditing, setIsEditing] = useState(false)
   const [editData, setEditData] = useState({})
 
   useEffect(() => {
-    // Get journal data from localStorage or use sample data
-    const savedData = localStorage.getItem('journalData')
-    let journalData = []
+    // Get newsletter data from localStorage or use sample data
+    const savedData = localStorage.getItem('newsletterData')
+    let newsletterData = []
     
     if (savedData) {
-      journalData = JSON.parse(savedData)
+      newsletterData = JSON.parse(savedData)
     } else {
       // Use sample data if no localStorage data
-      journalData = [
+      newsletterData = [
         {
           title: 'A New Beginning',
           description: 'Starting fresh with new perspectives and embracing the journey ahead with open heart and mind.',
           date: 'March 15, 2024',
-          link: '/journal-entries/a-new-beginning',
+          link: '/newsletters/a-new-beginning',
           content: 'Today marks the beginning of a new chapter in my life. As I sit here reflecting on the past few months, I realize how much growth has occurred. The challenges I faced seemed insurmountable at times, but each one taught me valuable lessons about resilience and perseverance.\n\nI\'ve learned that true strength isn\'t about never falling, but about getting back up every time we fall. It\'s about finding courage in the face of uncertainty and trusting that everything happens for a reason.\n\nMoving forward, I\'m committed to embracing change with grace and maintaining a positive outlook, no matter what obstacles come my way.'
         },
         {
           title: 'Lessons from Nature',
           description: 'Finding wisdom in the natural world and discovering how much we can learn from observing the cycles of life.',
           date: 'March 10, 2024',
-          link: '/journal-entries/lessons-from-nature',
+          link: '/newsletters/lessons-from-nature',
           content: 'Spending time in nature has always been a source of inspiration and clarity for me. Yesterday, I watched a spider carefully weaving its web, each thread placed with precision and purpose. It reminded me of how we too must be deliberate in building our lives.\n\nThe changing seasons teach us about impermanence and the beauty of letting go. Just as trees shed their leaves in autumn, we too must release what no longer serves us to make room for new growth.\n\nNature operates on its own timeline, never rushing, never questioning. There\'s a profound lesson in that patience and trust in the process.'
         },
         {
           title: 'The Power of Connection',
           description: 'Exploring the importance of meaningful relationships and how they shape our journey through life.',
           date: 'March 5, 2024',
-          link: '/journal-entries/the-power-of-connection',
+          link: '/newsletters/the-power-of-connection',
           content: 'This week I had several conversations that reminded me of the profound impact human connection has on our wellbeing. In a world that often feels disconnected, these moments of genuine understanding and shared experience are precious.\n\nI\'ve noticed that the most meaningful relationships aren\'t always the easiest. Sometimes they require difficult conversations, vulnerability, and the courage to be truly seen. But the rewards - trust, intimacy, mutual growth - are immeasurable.\n\nIt\'s easy to get caught up in the busyness of life and forget to nurture these connections. I\'m making a commitment to reach out more regularly, to listen more deeply, and to show up fully for the people who matter most.'
         }
       ]
     }
 
-    // Find the journal entry by ID
-    const foundJournal = journalData.find(j => j.link === `/journal-entries/${entryId}`)
-    setJournal(foundJournal)
-    setEditData(foundJournal || {})
+    // Find the newsletter entry by ID
+    const foundNewsletter = newsletterData.find(j => j.link === `/newsletters/${entryId}`)
+    setNewsletter(foundNewsletter)
+    setEditData(foundNewsletter || {})
     setLoading(false)
   }, [entryId])
 
   const handleBack = () => {
-    navigate('/journal-entries')
+    navigate('/newsletters')
   }
 
   const handleEditToggle = () => {
     if (isEditing) {
       // Save changes
-      const savedData = localStorage.getItem('journalData')
-      let journalData = savedData ? JSON.parse(savedData) : []
+      const savedData = localStorage.getItem('newsletterData')
+      let newsletterData = savedData ? JSON.parse(savedData) : []
       
-      const updatedData = journalData.map(j => 
-        j.link === `/journal-entries/${entryId}` ? editData : j
+      const updatedData = newsletterData.map(j => 
+        j.link === `/newsletters/${entryId}` ? editData : j
       )
       
-      localStorage.setItem('journalData', JSON.stringify(updatedData))
-      setJournal(editData)
+      localStorage.setItem('newsletterData', JSON.stringify(updatedData))
+      setNewsletter(editData)
     }
     setIsEditing(!isEditing)
   }
@@ -85,25 +85,25 @@ export default function JournalEntryPage() {
       <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-br from-midnight-900 via-slate-900 to-blue-950">
         <div className="container mx-auto max-w-4xl relative z-10">
           <div className="text-center">
-            <p className="text-slate-300">Loading journal entry...</p>
+            <p className="text-slate-300">Loading newsletter entry...</p>
           </div>
         </div>
       </div>
     )
   }
 
-  if (!journal) {
+  if (!newsletter) {
     return (
       <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-br from-midnight-900 via-slate-900 to-blue-950">
         <div className="container mx-auto max-w-4xl relative z-10">
           <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold text-slate-100 mb-8">Journal Entry Not Found</h1>
-            <p className="text-slate-300 mb-8">Sorry, this journal entry could not be found.</p>
+            <h1 className="text-3xl sm:text-4xl font-bold text-slate-100 mb-8">Newsletter Entry Not Found</h1>
+            <p className="text-slate-300 mb-8">Sorry, this newsletter entry could not be found.</p>
             <button 
               onClick={handleBack}
               className="inline-flex items-center px-6 sm:px-8 py-3 bg-royal-600 hover:bg-royal-700 text-slate-100 font-medium rounded-lg transition-colors duration-300"
             >
-              ← Back to Journal Entries
+              ← Back to Newsletters
             </button>
           </div>
         </div>
@@ -124,18 +124,18 @@ export default function JournalEntryPage() {
         <DirectorySideBar />
         
         <div className="space-y-8">
-          {/* Journal Entry Header */}
+          {/* Newsletter Entry Header */}
           <div className="text-center">
             {isEditing ? (
               <input
                 type="text"
-                value={editData.title}
+                value={editData.title || ''}
                 onChange={(e) => handleEditChange('title', e.target.value)}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-100 bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-center w-full max-w-2xl"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-100 bg-slate-600 border border-slate-500 rounded px-4 py-2 text-center w-full max-w-2xl"
               />
             ) : (
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-100 mb-6">
-                {journal.title}
+                {newsletter.title}
               </h1>
             )}
             
@@ -157,25 +157,26 @@ export default function JournalEntryPage() {
             ) : (
               <>
                 <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-4">
-                  {journal.description}
+                  {newsletter.description}
                 </p>
-                <p className="text-slate-400 text-sm">{journal.date}</p>
+                <p className="text-slate-400 text-sm">{newsletter.date}</p>
               </>
             )}
           </div>
 
-          {/* Journal Content */}
+          {/* Newsletter Content */}
           <div className="bg-slate-700/90 backdrop-blur-md rounded-xl p-8 sm:p-12 border border-slate-400/50 shadow-sm">
             {isEditing ? (
               <textarea
-                value={editData.content}
+                value={editData.content || ''}
                 onChange={(e) => handleEditChange('content', e.target.value)}
-                className="w-full h-96 text-slate-100 text-lg leading-relaxed bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 resize-none"
+                className="w-full h-96 text-slate-100 bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 resize-none"
+                placeholder="Write your newsletter content here..."
               />
             ) : (
               <div className="prose prose-invert max-w-none">
                 <div className="text-slate-100 text-lg leading-relaxed whitespace-pre-wrap">
-                  {journal.content}
+                  {newsletter.content}
                 </div>
               </div>
             )}
@@ -191,7 +192,7 @@ export default function JournalEntryPage() {
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                Back to Journal Entries
+                Back to Newsletters
               </button>
               {isAuthenticated && isAdmin && (
                 <button
